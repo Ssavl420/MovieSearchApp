@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+   <title>Movie Search App</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+   <meta name="format-detection" content="telephone=no">
+   <meta name="description" content="Приложение список фильмов">
+   <meta name="keywords" content="Приложение список фильмов">
+   <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+   <meta name="robots" content="none">
+   <meta name="Author" content="Savlevich Sergey">
+   <meta name="Copyright" content="Savlevich Sergey">
+   <meta name="Address" content="planet: Earth">
+   <meta http-equiv="refresh" content="; url=index.html">
+   <meta property="og:locale" content="ru_RU">
+   <meta property="og:type" content="article">
+   <meta name="twitter:card" content="summary_large_image">
+   <meta property="og:title" content="List of films">
+   <meta name="twitter:title" content="List of films">
+   <meta property="og:description" content="Поиск фильмов">
+   <meta property="og:image" content="Img/logo/01.png">
+   <meta property="twitter:image" content="Img/logo/01.png">
+   <meta property="og:url" content="https://savlevich.ru/films">
+   <meta property="og:site_name" content="Movie Search App">
+   <link rel="icon" href="./Img/favicon.png" type="image/x-icon">
+   <link rel="stylesheet" href="Source/css/index.css">
+</head>
+
+<body>
+   <header>
+      <div class="container">
+         <div class="header__inner">
+            <div class="header__btn-wrap">
+               <p class="header__btn">Список фильмов</p>
+               <p class="header__btn">2023</p>
+            </div>
+            <h1 class="title">Поиск фильмов</h1>
+         </div>
+      </div>
+   </header>
+   <main>
+      <div class="container">
+         <div class="main__inner">
+            <form id="searchMovieForm" class="form" action="" method="post" autocomplete="off">
+               <div class="input__box">
+                  <input id="searchMovie" class="movie__input" type="text" name="Title" placeholder="Название фильма">
+               </div>
+               <button id="searchBtn" type="submit" class="input__btn"></button>
+            </form>
+            <div class="list__films">
+               <ul id="listFilms">
+                  <li class="film">
+                     <div class="film__inner">
+                        <div class="film__poster">
+                           <img src="https://st.kp.yandex.net/images/film_iphone/iphone360_1049183.jpg"
+                              alt="tv-series Скорая помощь">
+                           <p class="rating" title="Рейтинг">7.245</p>
+                        </div>
+                        <div class="film__body">
+                           <p class="title">Скорая помощь</p>
+                           <p class="years">2018 - ...</p>
+                           <p class="type">Сериал</p>
+                           <p class="genres">мелодрама триллер</p>
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+      </div>
+   </main>
+   <script src="Js/index.js"></script>
+</body>
+
+</html>
