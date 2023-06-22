@@ -103,6 +103,13 @@ body {
   color: #f3f6f9;
   background: #181818;
 }
+body._touch main .main__inner .form .input__btn {
+  transition: none;
+}
+body._touch main .main__inner .form .input__btn:hover {
+  box-shadow: none;
+  transform: none;
+}
 
 .animation {
   animation: shake 0.4s;
@@ -317,6 +324,7 @@ main .main__inner .form .input__btn:hover {
   transform: rotate(-90deg);
 }
 main .main__inner .form .input__btn:disabled {
+  background: #555;
   cursor: default;
 }
 @media (max-width: 428px) {
