@@ -80,6 +80,7 @@ function searchMovies() {
    search_Btn.style.cssText = 'background-color: gray;';
    search_Btn.setAttribute("disabled", "disabled");
    fetch(`https://api.kinopoisk.dev/v1.3/movie?name=${movieTitle}&poster.url=%21null`, {   // Ограничение 200 запросов в сутки!!
+      method: 'GET',
       headers: {
          'X-API-KEY': 'V6697KC-1MZM6PN-HWFGXH5-FCMKD9X',
       }
