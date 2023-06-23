@@ -232,8 +232,8 @@ flex: 0 1 100%;
                box-shadow: 0px 0px 15px 5px #555;
                transform: rotate(-90deg);
             }
-            &:disabled {
-               background: #555;
+            &[disabled] {
+               background-color: #555;
                cursor: default;
             }
             @media (max-width: 428px) {
@@ -283,7 +283,7 @@ flex: 0 1 100%;
                   display: flex;
                   gap: 20px;
                   @media (max-width: 428px) {
-                     max-width: 265px;
+                     max-width: 100%;
                      gap: 10px;
                   }
                   .film__poster {
@@ -318,6 +318,7 @@ flex: 0 1 100%;
                      }
                   }
                   .film__body {
+                     width: 60%;
                      height: 100%;
                      display: flex;
                      flex-direction: column;
@@ -337,32 +338,43 @@ flex: 0 1 100%;
                         font-size: 13px;
                         line-height: 16px;
                      }
-                     .title {
-                        font-size: 40px;
-                        font-weight: 700;
-                        line-height: 48px;
-                        @media (max-width: 754px) {
-                           font-size: 25px;
-                           line-height: 30px;
+                     .film__header {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 15px;
+                        .title {
+                           font-size: 40px;
+                           font-weight: 700;
+                           line-height: 48px;
+                           @media (max-width: 754px) {
+                              font-size: 25px;
+                              line-height: 30px;
+                           }
+                           @media (max-width: 640px) {
+                              font-size: 25px;
+                              line-height: 30px;
+                           }
+                           @media (max-width: 540px) {
+                              font-size: 20px;
+                              line-height: 30px;
+                           }
+                           @media (max-width: 428px) {
+                              font-size: 16px;
+                              line-height: 20px;
+                           }
                         }
-                        @media (max-width: 640px) {
-                           font-size: 25px;
-                           line-height: 30px;
-                        }
-                        @media (max-width: 540px) {
-                           font-size: 20px;
-                           line-height: 30px;
-                        }
-                        @media (max-width: 428px) {
-                           font-size: 16px;
-                           line-height: 20px;
+                        .film__info {
+                           max-width: 50%;
+                           display: flex;
+                           justify-content: space-between;
+                           .genres {
+                           }
+                           .years {
+                           }
                         }
                      }
-                     .years {
-                     }
-                     .type {
-                     }
-                     .genres {
+                     .shortDescription {
+                        font-size: 16px;
                      }
                   }
                }
