@@ -11,6 +11,7 @@ renderMoviesList();
 document.querySelector('#searchMovieForm').addEventListener('submit', searchBtnHeandler);
 
 function searchBtnHeandler() {
+   alert("запуск searchBtnHeandler");
    event.preventDefault();
 
    if (validation(this) == false) {
@@ -21,10 +22,12 @@ function searchBtnHeandler() {
    console.log('Валидация пройдена')
    
    localStorage.clear();
+   alert("localStorage очищен");
    searchMovies();
 };
 // Валидация поля ввода
 function validation(form) {
+   alert("запуск validation");
 
    let result = true;
 
@@ -52,22 +55,35 @@ function validation(form) {
          result = false;
       }
    }
-
+   alert("окончание validation");
    return result;
 };
 //Поиск фильма 
 function searchMovies() {
+   alert("запуск searchMovies");
    const movieTitle = movie_To_Search_Node.value;
    removeError(movie_To_Search_Node);
    search_Btn.style.cssText = 'background-color: gray;';
    search_Btn.setAttribute("disabled", "disabled");
+   alert("Кнопка отправки disabled");
    fetch(`https://api.kinopoisk.dev/v1.3/movie?name=${movieTitle}&poster.url=%21null`, {   // Ограничение 200 запросов в сутки!!
       method: 'GET',
       headers: {
          'X-API-KEY': 'V6697KC-1MZM6PN-HWFGXH5-FCMKD9X',
       }
    })
-   .then (data => data.json())
+   .then (data => {
+      alert("fetch data");
+      if (data.status !== 200) {
+         search_Btn.removeAttribute("disabled", "disabled");
+         search_Btn.style.cssText = "";
+         animateElement(movie_To_Search_Node);
+         createError(movie_To_Search_Node, 'Ошибка на сервере, попробуйте еще раз позже!')
+         clearValue(movie_To_Search_Node);
+         movie_To_Search_Node.focus();
+         return null;
+      }
+      return data.json()})
    .then (response => {
       if (response.docs.length < 1) {
          search_Btn.removeAttribute("disabled", "disabled");
@@ -78,29 +94,36 @@ function searchMovies() {
          movie_To_Search_Node.focus();
          return null
       }
+      alert("Response получен");
       movies = response.docs;
       localStorage.setItem("movies", JSON.stringify(movies));
+      alert("Response записан в localStorage");
       console.log(response.docs[0].name)
 
       search_Btn.removeAttribute("disabled", "disabled");
       search_Btn.style.cssText = "";
       clearValue(movie_To_Search_Node);
+      alert("Очищено поле input");
       renderMoviesList();
    })
 };
 // Очищение поля input
 function clearValue(element) {
+   alert("запуск clearValue");
    element.value = null;
 };
 // Анимация элемента
 function animateElement(element) {
+   alert("запуск animateElement");
    element.classList.add('animation')
    
    setTimeout(() => {
       element.classList.remove('animation')
    }, 400);
+   alert("окончание работы animateElement");
 };
 function renderMoviesList() {
+   alert("запуск renderMovieList");
    if (!movies) {
       return null
    }
@@ -113,7 +136,7 @@ function renderMoviesList() {
    let movieListHTML = '';
    for (let i = 0; i < movies.length; i++) {
       movieListHTML +=
-      `<li class="film">
+      `<li id="${[i]}" class="film">
          <div class="film__inner">
             <div class="film__poster">
                <img src="${movies[i]?.poster.url}"
@@ -133,9 +156,12 @@ function renderMoviesList() {
          </div>
       </li>`
    }
+   alert("Все циклы в renderMovieList пройдены");
    movieList.innerHTML = movieListHTML;
+   alert("окончание работы renderMovieList");
 }
 function createError(input, text) {
+   alert("запуск createError");
    const parent = input.parentNode;
    const errorLabel = document.createElement('label');
 
@@ -143,13 +169,16 @@ function createError(input, text) {
    errorLabel.innerText = text;
    parent.appendChild(errorLabel);
    parent.classList.add('error');
+   alert("окончание работы createError");
 }
 function removeError(input) {
+   alert("запуск removeError");
    const parent = input.parentNode;
    if (parent.classList.contains('error')) {
       parent.querySelector('.error__label').remove()
       parent.classList.remove('error')
    }
+   alert("окончание работы removeError");
 }
 const isMobile = {
    Android: function () {
@@ -184,18 +213,22 @@ if (isMobile.any()) {
    document.body.classList.add("_pc");
 }
 
-// `<li class="film">
-// <div class="film__inner">
-//    <div class="film__poster">
-//       <img src="${movies[0][i].poster.url}"
-//          alt="${movies[0][i].name}">
-//       <p class="rating" title="Рейтинг ImDB">${movies[0][i].rating.imdb}</p>
+// `<li id="${[i]}" class="film">
+//    <div class="film__inner">
+//       <div class="film__poster">
+//          <img src="${movies[i]?.poster.url}"
+//             alt="${movies[i]?.name}" title="${movies[i]?.name}">
+//          <p class="rating" title="Рейтинг IMDB">${movies[i]?.rating?.imdb}</p>
+//       </div>
+//       <div class="film__body">
+//          <div class="film__header">
+//             <p class="title">${movies[i]?.name}</p>
+//             <div class="film__info">
+//                <p class="genres">${movies[i]?.genres[0]?.name}</p>
+//                <p class="years">${movies[i]?.year}</p>
+//             </div>
+//          </div>
+//          <p class="shortDescription">${movies[i]?.shortDescription}</p>
+//       </div>
 //    </div>
-//    <div class="film__body">
-//       <p class="title">${movies[0][i].name}</p>
-//       <p class="years">${movies[0][i].releaseYears[0].start} - ${movies[0][i].releaseYears[0].end}</p>
-//       <p class="type">${movies[0][i].type}</p>
-//       <p class="genres">${movies[0][i].genres[0].name}, ${movies[0][i].genres[1].name}</p>
-//    </div>
-// </div>
 // </li>`
