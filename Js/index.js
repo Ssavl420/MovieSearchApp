@@ -10,7 +10,7 @@ let movies = JSON.parse(localStorage.getItem("movies"));
 renderMoviesList();
 document.querySelector('#searchMovieForm').addEventListener('submit', searchBtnHeandler);
 
-function searchBtnHeandler() {
+function searchBtnHeandler(event) {
    alert("запуск searchBtnHeandler");
    event.preventDefault();
 
