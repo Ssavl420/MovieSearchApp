@@ -277,15 +277,20 @@ main .main__inner .form .input__box {
     width: 85%;
   }
 }
+main .main__inner .form .input__box.error {
+  position: relative;
+}
 main .main__inner .form .input__box.error .movie__input {
   border: none;
 }
 main .main__inner .form .input__box.error .error__label {
   margin: -5px 0 0 0;
   display: block;
-  position: fixed;
+  position: absolute;
+  top: 62px;
+  left: 1px;
   font-size: 13px;
-  color: red;
+  color: rgba(255, 0, 0, 0.9);
 }
 main .main__inner .form .input__box .movie__input {
   width: 100%;

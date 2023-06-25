@@ -184,6 +184,7 @@ flex: 0 1 100%;
                width: 85%;
             }
             &.error {
+               position: relative;
                .movie__input {
                   &::-webkit-input-placeholder {
                      // color:    rgb(255, 255, 255);
@@ -193,9 +194,12 @@ flex: 0 1 100%;
                .error__label {
                   margin: -5px 0 0 0;
                   display: block;
-                  position: fixed;
+                  // position: fixed;
+                  position: absolute;
+                  top: 62px;
+                  left: 1px;
                   font-size: 13px;
-                  color: red;
+                  color: rgba(255, 0, 0, .9);
                }
             }
             .movie__input {
