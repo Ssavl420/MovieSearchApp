@@ -202,7 +202,9 @@ function renderMoviesList() {
 
          movieList.appendChild(film);
 
-         shortDescription.innerHTML = `${movies[i]?.description}`;
+         if(movies[i]?.description == undefined) {
+            shortDescription.innerHTML = '';
+         } else {shortDescription.innerHTML = `${movies[i]?.description}`};
 
          film.addEventListener('click', renderMoviesList);
       })
