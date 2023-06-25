@@ -11,7 +11,7 @@ renderMoviesList();
 document.querySelector('#searchMovieForm').addEventListener('submit', searchBtnHeandler);
 
 function searchBtnHeandler(event) {
-   alert("запуск searchBtnHeandler");
+   // alert("запуск searchBtnHeandler");
    event.preventDefault();
 
    if (validation(this) == false) {
@@ -22,12 +22,12 @@ function searchBtnHeandler(event) {
    console.log('Валидация пройдена')
    
    localStorage.clear();
-   alert("localStorage очищен");
+   // alert("localStorage очищен");
    searchMovies();
 };
 // Валидация поля ввода
 function validation(form) {
-   alert("запуск validation");
+   // alert("запуск validation");
 
    let result = true;
 
@@ -55,17 +55,17 @@ function validation(form) {
          result = false;
       }
    }
-   alert("окончание validation");
+   // alert("окончание validation");
    return result;
 };
 //Поиск фильма 
 function searchMovies() {
-   alert("запуск searchMovies");
+   // alert("запуск searchMovies");
    const movieTitle = movie_To_Search_Node.value;
    removeError(movie_To_Search_Node);
    search_Btn.style.cssText = 'background-color: gray;';
    search_Btn.setAttribute("disabled", "disabled");
-   alert("Кнопка отправки disabled");
+   // alert("Кнопка отправки disabled");
    fetch(`https://api.kinopoisk.dev/v1.3/movie?name=${movieTitle}&poster.url=%21null`, {   // Ограничение 200 запросов в сутки!!
       method: 'GET',
       headers: {
@@ -73,7 +73,7 @@ function searchMovies() {
       }
    })
    .then (data => {
-      alert("fetch data");
+      // alert("fetch data");
       if (data.status !== 200) {
          search_Btn.removeAttribute("disabled", "disabled");
          search_Btn.style.cssText = "";
@@ -94,74 +94,124 @@ function searchMovies() {
          movie_To_Search_Node.focus();
          return null
       }
-      alert("Response получен");
+      // alert("Response получен");
       movies = response.docs;
       localStorage.setItem("movies", JSON.stringify(movies));
-      alert("Response записан в localStorage");
+      // alert("Response записан в localStorage");
       console.log(response.docs[0].name)
 
       search_Btn.removeAttribute("disabled", "disabled");
       search_Btn.style.cssText = "";
       clearValue(movie_To_Search_Node);
-      alert("Очищено поле input");
+      // alert("Очищено поле input");
       renderMoviesList();
    })
 };
 // Очищение поля input
 function clearValue(element) {
-   alert("запуск clearValue");
+   // alert("запуск clearValue");
    element.value = null;
 };
 // Анимация элемента
 function animateElement(element) {
-   alert("запуск animateElement");
+   // alert("запуск animateElement");
    element.classList.add('animation')
    
    setTimeout(() => {
       element.classList.remove('animation')
    }, 400);
-   alert("окончание работы animateElement");
+   // alert("окончание работы animateElement");
 };
+
 function renderMoviesList() {
-   alert("запуск renderMovieList");
+   document.querySelector('#searchMovieForm').style.cssText = '';
    if (!movies) {
       return null
    }
-   console.log(movies);
-   console.log(movies.length)
-   // let li = document.createElement('li');
-   // li.classList = 'item';
-   // movieList.appendChild(li);
 
-   let movieListHTML = '';
+   movieList.innerHTML = '';
    for (let i = 0; i < movies.length; i++) {
-      movieListHTML +=
-      `<li id="${[i]}" class="film">
-         <div class="film__inner">
-            <div class="film__poster">
-               <img src="${movies[i]?.poster.url}"
-                  alt="${movies[i]?.name}" title="${movies[i]?.name}">
-               <p class="rating" title="Рейтинг IMDB">${movies[i]?.rating?.imdb}</p>
-            </div>
-            <div class="film__body">
-               <div class="film__header">
-                  <p class="title">${movies[i]?.name}</p>
-                  <div class="film__info">
-                     <p class="genres">${movies[i]?.genres[0]?.name}</p>
-                     <p class="years">${movies[i]?.year}</p>
-                  </div>
-               </div>
-               <p class="shortDescription">${movies[i]?.shortDescription}</p>
-            </div>
-         </div>
-      </li>`
+
+      let film = document.createElement('li');
+      let filmInner = document.createElement('div');
+      let filmPoster = document.createElement('div');
+      let poster = document.createElement('img');
+      let rating = document.createElement('p');
+      let filmBody = document.createElement('div');
+      let filmHeader = document.createElement('div');
+      let movieTitle = document.createElement('p');
+      let filmInfo = document.createElement('div');
+      let movieGenre = document.createElement('p');
+      let movieYear = document.createElement('p');
+      let shortDescription = document.createElement('p');
+
+      film.className = 'film';
+      filmInner.className = 'film__inner';
+      filmPoster.className = 'film__poster';
+      rating.className = 'rating';
+      filmBody.className = 'film__body';
+      filmHeader.className = 'film__header';
+      movieTitle.className = 'title';
+      filmInfo.className = 'film__info';
+      movieGenre.className = 'genres';
+      movieYear.className = 'years';
+      shortDescription.className = 'shortDescription';
+
+      film.setAttribute('id', i);
+      poster.setAttribute('src', `${movies[i]?.poster.url}`);
+      poster.setAttribute('alt', `${movies[i]?.name}`);
+      poster.setAttribute('title', `${movies[i]?.name}`);
+      rating.setAttribute('title', `Рейтинг IMDB`);
+
+      rating.innerHTML = `${movies[i]?.rating?.imdb}`;
+      movieTitle.innerHTML = `${movies[i]?.name}`;
+      // movieGenre.innerHTML = `${movies[i]?.genres[0]?.name}`;
+
+      if(movies[i]?.genres[1]?.name == undefined) {
+         movieGenre.innerHTML = `${movies[i]?.genres[0]?.name}`;
+      } else {movieGenre.innerHTML = `${movies[i]?.genres[0]?.name} / ${movies[i]?.genres[1]?.name}`};
+
+      movieYear.innerHTML = `${movies[i]?.year}`;
+      if(movies[i]?.shortDescription === null) {
+         shortDescription.innerHTML = '';
+      } else {shortDescription.innerHTML = `${movies[i]?.shortDescription}`};
+
+      movieList.appendChild(film);
+      film.appendChild(filmInner);
+      filmInner.appendChild(filmPoster);
+      filmPoster.appendChild(poster);
+      filmPoster.appendChild(rating);
+      filmInner.appendChild(filmBody);
+      filmBody.appendChild(filmHeader);
+      filmHeader.appendChild(movieTitle);
+      filmHeader.appendChild(filmInfo);
+      filmInfo.appendChild(movieGenre);
+      filmInfo.appendChild(movieYear);
+      filmBody.appendChild(shortDescription);
+
+      film.addEventListener('click', () => {
+         console.log(i);
+         movieList.innerHTML = '';
+
+         document.querySelector('#searchMovieForm').style.cssText = 'display: none';
+         film.style.cssText = 'height: auto; cursor: default';
+         filmInner.style.cssText = 'flex-direction: column';
+         filmBody.style.cssText = 'height: auto; width: 100%';
+         filmInfo.style.cssText = 'flex-direction: column';
+         filmPoster.style.cssText = 'margin: 0 auto; max-width: none; width: 50%;';
+
+         movieList.appendChild(film);
+
+         shortDescription.innerHTML = `${movies[i]?.description}`;
+
+         film.addEventListener('click', renderMoviesList);
+      })
    }
-   alert("Все циклы в renderMovieList пройдены");
-   movieList.innerHTML = movieListHTML;
-   alert("окончание работы renderMovieList");
-}
+};
+
+
 function createError(input, text) {
-   alert("запуск createError");
+   // alert("запуск createError");
    const parent = input.parentNode;
    const errorLabel = document.createElement('label');
 
@@ -169,16 +219,16 @@ function createError(input, text) {
    errorLabel.innerText = text;
    parent.appendChild(errorLabel);
    parent.classList.add('error');
-   alert("окончание работы createError");
+   // alert("окончание работы createError");
 }
 function removeError(input) {
-   alert("запуск removeError");
+   // alert("запуск removeError");
    const parent = input.parentNode;
    if (parent.classList.contains('error')) {
       parent.querySelector('.error__label').remove()
       parent.classList.remove('error')
    }
-   alert("окончание работы removeError");
+   // alert("окончание работы removeError");
 }
 const isMobile = {
    Android: function () {
