@@ -143,6 +143,7 @@ function renderMoviesList() {
       let filmInfo = document.createElement('div');
       let movieGenre = document.createElement('p');
       let movieYear = document.createElement('p');
+      let movieLength = document.createElement('p');
       let shortDescription = document.createElement('p');
 
       film.className = 'film';
@@ -155,6 +156,7 @@ function renderMoviesList() {
       filmInfo.className = 'film__info';
       movieGenre.className = 'genres';
       movieYear.className = 'years';
+      movieLength.className = 'film__length';
       shortDescription.className = 'shortDescription';
 
       film.setAttribute('id', i);
@@ -165,13 +167,12 @@ function renderMoviesList() {
 
       rating.innerHTML = `${movies[i]?.rating?.imdb}`;
       movieTitle.innerHTML = `${movies[i]?.name}`;
-      // movieGenre.innerHTML = `${movies[i]?.genres[0]?.name}`;
+      movieYear.innerHTML = `${movies[i]?.year}`;
 
       if(movies[i]?.genres[1]?.name == undefined) {
          movieGenre.innerHTML = `${movies[i]?.genres[0]?.name}`;
       } else {movieGenre.innerHTML = `${movies[i]?.genres[0]?.name} / ${movies[i]?.genres[1]?.name}`};
 
-      movieYear.innerHTML = `${movies[i]?.year}`;
       if(movies[i]?.shortDescription === null) {
          shortDescription.innerHTML = '';
       } else {shortDescription.innerHTML = `${movies[i]?.shortDescription}`};
@@ -185,9 +186,11 @@ function renderMoviesList() {
       filmBody.appendChild(filmHeader);
       filmHeader.appendChild(movieTitle);
       filmHeader.appendChild(filmInfo);
-      filmInfo.appendChild(movieGenre);
       filmInfo.appendChild(movieYear);
+      filmInfo.appendChild(movieGenre);
+      filmInfo.appendChild(movieLength)
       filmBody.appendChild(shortDescription);
+
 
       film.addEventListener('click', () => {
          console.log(i);
@@ -196,11 +199,14 @@ function renderMoviesList() {
          document.querySelector('#searchMovieForm').style.cssText = 'display: none';
          film.style.cssText = 'height: auto; cursor: default';
          filmInner.style.cssText = 'flex-direction: column';
-         filmBody.style.cssText = 'height: auto; width: 100%';
-         filmInfo.style.cssText = 'flex-direction: column';
+         filmBody.style.cssText = 'height: auto; width: 100%; line-height: 24px';
+         filmInfo.style.cssText = 'flex-direction: column; font-size: 16px';
          filmPoster.style.cssText = 'margin: 0 auto; max-width: none; width: 50%;';
 
          movieList.appendChild(film);
+
+         movieYear.innerHTML = `Выход на экран: ${movies[i]?.year} г.`;
+         movieLength.innerHTML = `Продолжительность: ${movies[i]?.movieLength} мин.`
 
          if(movies[i]?.description == undefined) {
             shortDescription.innerHTML = '';

@@ -364,10 +364,13 @@ flex: 0 1 100%;
                            }
                         }
                         .film__info {
-                           max-width: 50%;
                            display: flex;
+                           flex-direction: column;
                            justify-content: space-between;
                            .genres {
+                              &::first-letter {
+                                 text-transform: uppercase;
+                              }
                            }
                            .years {
                            }
