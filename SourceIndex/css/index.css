@@ -1,0 +1,605 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Arimo:regular,500,600,700,italic,500italic,600italic,700italic); /*Обнуляющие стили*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+} /*Крестик в поле input браузера IE отключен*/
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+} /*Отступы кнопок браузера Firefox 0*/
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: 400;
+}
+
+/*----------------------*/
+html {
+  scroll-behavior: smooth;
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+html ::-webkit-scrollbar {
+  width: 15px;
+}
+html ::-webkit-scrollbar-track {
+  background: transparent;
+}
+html ::-webkit-scrollbar-thumb {
+  background: rgba(243, 246, 249, 0.3);
+  border-radius: 10px;
+}
+html ::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+body {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  font-family: "Arimo";
+  font-size: 20px;
+  font-weight: 400;
+  color: #f3f6f9;
+  background: #181818;
+}
+body._touch main .main__inner .form .input__btn {
+  transition: none;
+}
+body._touch main .main__inner .form .input__btn:hover {
+  box-shadow: none;
+  transform: none;
+}
+
+.animation {
+  animation: shake 0.4s;
+}
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px);
+  }
+  17% {
+    transform: translate(-1px, -2px);
+  }
+  34% {
+    transform: translate(1px, -1px);
+  }
+  50% {
+    transform: translate(-1px, 2px);
+  }
+  67% {
+    transform: translate(-1px, -1px);
+  }
+  84% {
+    transform: translate(1px, 2px);
+  }
+  100% {
+    transform: translate(1px, -2px);
+  }
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  position: relative;
+  max-width: 1140px;
+}
+
+.header__btn {
+  padding: 0 22px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  background: #6532F8;
+  color: #fff;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 1px solid #6532F8;
+  border-radius: 200px;
+}
+
+header {
+  padding: 80px 0 0 0;
+}
+header .header__inner {
+  padding: 0 0 0 70px;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 640px) {
+  header .header__inner {
+    padding: 0 40px;
+  }
+}
+@media (max-width: 428px) {
+  header .header__inner {
+    padding: 0 15px;
+  }
+}
+header .header__inner .header__btn-wrap {
+  height: 30px;
+  display: flex;
+  font-size: 15px;
+  line-height: 17px;
+  letter-spacing: -0.04em;
+}
+@media (max-width: 428px) {
+  header .header__inner .header__btn-wrap {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+header .header__inner .title {
+  font-size: 80px;
+  line-height: 138px;
+  letter-spacing: -0.04em;
+}
+@media (max-width: 754px) {
+  header .header__inner .title {
+    font-size: 70px;
+    line-height: 103px;
+  }
+}
+@media (max-width: 640px) {
+  header .header__inner .title {
+    font-size: 60px;
+    line-height: 80px;
+  }
+}
+@media (max-width: 540px) {
+  header .header__inner .title {
+    font-size: 40px;
+    line-height: 57px;
+  }
+}
+@media (max-width: 428px) {
+  header .header__inner .title {
+    padding: 10px 0 0 0;
+    font-size: 30px;
+    line-height: 34px;
+  }
+}
+
+main {
+  flex: 0 1 100%;
+}
+main .main__inner {
+  margin: 15px 0 0 0;
+  padding: 50px 0 30px;
+  min-height: 100%;
+  background: #232323;
+  border-radius: 20px;
+}
+@media (max-width: 540px) {
+  main .main__inner {
+    padding: 30px 0;
+  }
+}
+@media (max-width: 428px) {
+  main .main__inner {
+    padding: 20pxv0;
+  }
+}
+main .main__inner .form {
+  padding: 0 70px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+@media (max-width: 640px) {
+  main .main__inner .form {
+    padding: 0 40px;
+  }
+}
+@media (max-width: 428px) {
+  main .main__inner .form {
+    gap: 0;
+    justify-content: space-between;
+  }
+}
+@media (max-width: 428px) {
+  main .main__inner .form {
+    padding: 0 15px;
+  }
+}
+main .main__inner .form .input__box {
+  width: 71.61%;
+}
+@media (max-width: 650px) {
+  main .main__inner .form .input__box {
+    width: 70%;
+  }
+}
+@media (max-width: 428px) {
+  main .main__inner .form .input__box {
+    width: 85%;
+  }
+}
+main .main__inner .form .input__box.error {
+  position: relative;
+}
+main .main__inner .form .input__box.error .movie__input {
+  border: none;
+}
+main .main__inner .form .input__box.error .error__label {
+  margin: -5px 0 0 0;
+  display: block;
+  position: absolute;
+  left: 1px;
+  font-size: 13px;
+  color: rgba(255, 0, 0, 0.9);
+}
+main .main__inner .form .input__box .movie__input {
+  width: 100%;
+  height: 62px;
+  font-size: 30px;
+  line-height: 34px;
+  color: rgba(243, 246, 249, 0.5);
+  background: #232323;
+  border-bottom: 1px solid rgba(243, 246, 249, 0.5);
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+@media (max-width: 640px) {
+  main .main__inner .form .input__box .movie__input {
+    width: 100%;
+    font-size: 25px;
+    line-height: 28px;
+  }
+}
+@media (max-width: 428px) {
+  main .main__inner .form .input__box .movie__input {
+    height: 42px;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+main .main__inner .form .input__btn {
+  width: 62px;
+  height: 62px;
+  background: url("../../Img/icon/searchIcon.png") center no-repeat, #6532F8;
+  border-radius: 50%;
+  transition: all 0.5s ease;
+}
+main .main__inner .form .input__btn:hover {
+  box-shadow: 0px 0px 15px 5px #555;
+  transform: rotate(-90deg);
+}
+main .main__inner .form .input__btn[disabled] {
+  background-color: #555;
+  cursor: default;
+}
+@media (max-width: 428px) {
+  main .main__inner .form .input__btn {
+    width: 42px;
+    height: 42px;
+    background-size: 50%;
+  }
+}
+main .main__inner .list__films {
+  margin: 40px 0 0 0;
+  padding: 0 50px;
+}
+@media (max-width: 640px) {
+  main .main__inner .list__films {
+    padding: 0 20px;
+  }
+}
+@media (max-width: 428px) {
+  main .main__inner .list__films {
+    margin: 20px 0 0 0;
+    padding: 0 7.5px;
+  }
+}
+main .main__inner .list__films ul {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+main .main__inner .list__films ul .film {
+  padding: 20px;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  transition: all 0.4s ease;
+}
+@media (max-width: 540px) {
+  main .main__inner .list__films ul .film {
+    font-size: 18px;
+  }
+}
+@media (max-width: 428px) {
+  main .main__inner .list__films ul .film {
+    padding: 10px 7.5px;
+    font-size: 15px;
+  }
+}
+main .main__inner .list__films ul .film:hover {
+  background: #3A3939;
+  cursor: pointer;
+}
+main .main__inner .list__films ul .film .film__inner {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 20px;
+}
+@media (max-width: 428px) {
+  main .main__inner .list__films ul .film .film__inner {
+    max-width: 100%;
+    gap: 10px;
+  }
+}
+main .main__inner .list__films ul .film .film__inner .film__poster {
+  width: 30%;
+  max-width: 200px;
+  min-width: 130px;
+  height: 100%;
+  position: relative;
+}
+@media (max-width: 428px) {
+  main .main__inner .list__films ul .film .film__inner .film__poster {
+    min-width: 92.84px;
+  }
+}
+main .main__inner .list__films ul .film .film__inner .film__poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+main .main__inner .list__films ul .film .film__inner .film__poster .rating {
+  padding: 8px;
+  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 13px;
+  text-align: center;
+  background-color: #3A3939;
+  box-shadow: 0px 0px 10px 0px white;
+  border-radius: 10px;
+  cursor: default;
+}
+@media (max-width: 428px) {
+  main .main__inner .list__films ul .film .film__inner .film__poster .rating {
+    padding: 4px;
+    font-size: 8px;
+  }
+}
+main .main__inner .list__films ul .film .film__inner .film__body {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 15px;
+  font-size: 25px;
+  line-height: 30px;
+}
+@media (max-width: 754px) {
+  main .main__inner .list__films ul .film .film__inner .film__body {
+    font-size: 20px;
+    line-height: 25px;
+  }
+}
+@media (max-width: 540px) {
+  main .main__inner .list__films ul .film .film__inner .film__body {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+@media (max-width: 428px) {
+  main .main__inner .list__films ul .film .film__inner .film__body {
+    font-size: 13px;
+    line-height: 16px;
+  }
+}
+main .main__inner .list__films ul .film .film__inner .film__body .film__header {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+main .main__inner .list__films ul .film .film__inner .film__body .film__header .title {
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 48px;
+}
+@media (max-width: 754px) {
+  main .main__inner .list__films ul .film .film__inner .film__body .film__header .title {
+    font-size: 25px;
+    line-height: 30px;
+  }
+}
+@media (max-width: 640px) {
+  main .main__inner .list__films ul .film .film__inner .film__body .film__header .title {
+    font-size: 25px;
+    line-height: 30px;
+  }
+}
+@media (max-width: 540px) {
+  main .main__inner .list__films ul .film .film__inner .film__body .film__header .title {
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+@media (max-width: 428px) {
+  main .main__inner .list__films ul .film .film__inner .film__body .film__header .title {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+main .main__inner .list__films ul .film .film__inner .film__body .film__header .film__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+main .main__inner .list__films ul .film .film__inner .film__body .film__header .film__info .genres::first-letter {
+  text-transform: uppercase;
+}
+main .main__inner .list__films ul .film .film__inner .film__body .shortDescription {
+  font-size: 16px;
+}
+main .main__inner .list__films ul .movieItem__wrap {
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+main .main__inner .list__films ul .movieItem__wrap .movie__poster {
+  display: flex;
+  justify-content: center;
+  flex: 0 1 30%;
+  min-width: 300px;
+  position: relative;
+}
+main .main__inner .list__films ul .movieItem__wrap .movie__poster .movie__poster-bg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  filter: blur(15px) brightness(60%) saturate(50%);
+  background: url("") center;
+}
+main .main__inner .list__films ul .movieItem__wrap .movie__poster img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 5px;
+  filter: blur(0);
+}
+@media (max-width: 826px) {
+  main .main__inner .list__films ul .movieItem__wrap .movie__poster {
+    min-width: 100%;
+  }
+}
+main .main__inner .list__films ul .movieItem__wrap .movie__info {
+  flex: 0 1 50%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 16px;
+  text-align: left;
+}
+@media (max-width: 826px) {
+  main .main__inner .list__films ul .movieItem__wrap .movie__info {
+    flex: none;
+  }
+}
+main .main__inner .list__films ul .movieItem__wrap .movie__info .movie__info-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+main .main__inner .list__films ul .movieItem__wrap .movie__info .movie__info-wrap .info__title {
+  margin: 0 0 15px 0;
+  font-size: 40px;
+}
+main .main__inner .list__films ul .movieItem__wrap .movie__info .header__btn {
+  width: max-content;
+  height: 30px;
+}
+@media (max-width: 428px) {
+  main .main__inner .list__films ul .movieItem__wrap .movie__info .header__btn {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
+main .main__inner .list__films ul .movieItem__wrap .movie__trailer {
+  width: 100%;
+}
+main .main__inner .list__films ul .movieItem__wrap .movie__trailer::after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: relative;
+  bottom: -7.5px;
+  left: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 15%, rgb(173, 171, 171) 50%, rgba(255, 255, 255, 0) 85%);
+}
+main .main__inner .list__films ul .movieItem__wrap .similar__movies {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__title {
+  width: 100%;
+}
+main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__wrap {
+  max-width: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__poster {
+  width: 100%;
+}
+main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__poster img {
+  width: 100%;
+  border-radius: 10px;
+}/*# sourceMappingURL=index.css.map */

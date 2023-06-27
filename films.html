@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+   <title>Список фильмов</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+   <meta name="format-detection" content="telephone=no">
+   <meta name="description" content="Приложение список фильмов">
+   <meta name="keywords" content="Приложение список фильмов">
+   <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+   <meta name="robots" content="none">
+   <meta name="Author" content="Savlevich Sergey">
+   <meta name="Copyright" content="Savlevich Sergey">
+   <meta name="Address" content="planet: Earth">
+   <meta http-equiv="refresh" content="; url=index.html">
+   <meta property="og:locale" content="ru_RU">
+   <meta property="og:type" content="article">
+   <meta name="twitter:card" content="summary_large_image">
+   <meta property="og:title" content="List of films">
+   <meta name="twitter:title" content="List of films">
+   <meta property="og:description" content="Список фильмов">
+   <meta property="og:image" content="Img/logo/01.png">
+   <meta property="twitter:image" content="Img/logo/01.png">
+   <meta property="og:url" content="https://savlevich.ru/films">
+   <meta property="og:site_name" content="Movies App">
+   <link rel="icon" href="./Img/favicon.png" type="image/x-icon">
+   <link rel="stylesheet" href="SourceFilms/css/index.css">
+</head>
+
+<body>
+   <header>
+      <div class="container">
+         <div class="header__inner">
+            <div class="header__btn-wrap">
+               <a href="index.html">
+                  <p class="header__btn">Поиск фильмов</p>
+               </a>
+               <a href="films.html">
+                  <p class="header__btn">Посмотреть</p>
+               </a>
+            </div>
+            <h1 class="title">Посмотреть</h1>
+         </div>
+      </div>
+   </header>
+   <main>
+      <div class="container">
+         <div class="main__inner">
+            <form id="addMovie" class="form" action="" method="post" autocomplete="off">
+               <div class="input__box">
+                  <input id="movieTitle" class="movie__input" type="text" name="Title" placeholder="Добавить фильм">
+               </div>
+               <button id="movieBtn" type="submit" class="input__btn"></button>
+            </form>
+            <div class="list__films">
+               <ol id="listFilms">
+               </ol>
+            </div>
+         </div>
+      </div>
+   </main>
+   <!-- <script src="Js/script.js"></script> -->
+   <script type="module" src="Js/films.js"></script>
+</body>
+
+</html>

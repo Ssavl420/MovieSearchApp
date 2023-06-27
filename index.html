@@ -5,6 +5,7 @@
    <title>Movie Search App</title>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+   <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
    <meta name="format-detection" content="telephone=no">
    <meta name="description" content="Приложение список фильмов">
    <meta name="keywords" content="Приложение список фильмов">
@@ -25,7 +26,7 @@
    <meta property="og:url" content="https://savlevich.ru/films">
    <meta property="og:site_name" content="Movie Search App">
    <link rel="icon" href="./Img/favicon.png" type="image/x-icon">
-   <link rel="stylesheet" href="Source/css/index.css">
+   <link rel="stylesheet" href="SourceIndex/css/index.css">
 </head>
 
 <body>
@@ -33,8 +34,12 @@
       <div class="container">
          <div class="header__inner">
             <div class="header__btn-wrap">
-               <p class="header__btn">Movie Search App</p>
-               <p class="header__btn">2023</p>
+               <a href="index.html">
+                  <p class="header__btn">Поиск фильмов</p>
+               </a>
+               <a href="films.html">
+                  <p class="header__btn">Посмотреть</p>
+               </a>
             </div>
             <h1 class="title">Поиск фильмов</h1>
          </div>
@@ -51,12 +56,53 @@
             </form>
             <div class="list__films">
                <ul id="listFilms">
+                  <!-- <li class="movieItem__wrap">
+                     <div class="movie__poster">
+                        <div class="movie__poster-bg"></div>
+                        <img src="https://st.kp.yandex.net/images/film_big/760326.jpg" alt="Люси">
+                     </div>
+                     <div class="movie__info">
+                        <div class="movie__info-wrap">
+                           <p class="info__title">Люси</p>
+                           <p class="info__year">Год: 2014</p>
+                           <p class="info__genres">Жанр: Боевик</p>
+                           <p class="info__length">Продолжительность: 89 мин.</p>
+                           <p class="info__buget">Бюджет: 40 000 000 $</p>
+                           <p class="info__sales">Сборы в мире: 458 863 600 $</p>
+                           <p class="info__director">Режиссер: Люк Бессон</p>
+                           <p class="info__actors">В ролях: Скарлетт Йохансон, Деми Мур, Ричард Гид и другие</p>
+                        </div>
+                        <p class="header__btn">Добавить в список посмотреть</p>
+                     </div>
+                     <div class="movie__description">
+                        <p class="description__text">Еще вчера она была просто сексапильной блондинкой, а сегодня -
+                           самое опасное и смертоносное создание на планете со сверхъестественными способностями и
+                           интеллектом. То, что совсем недавно лучшие умы мира считали фантастической теорией, для нее
+                           стало реальностью. И теперь из добычи она превратится в охотницу. Ее зовут Люси...</p>
+                     </div>
+                     <div class="movie__trailer">
+                        <a href="https://www.youtube.com/embed/3zqMB_h4-zk" target="_blank">Трейлер</a>
+                     </div>
+                     <div class="similar__movies">
+                        <p class="similar__title">Похожие фильмы</p>
+                        <div class="similar__wrap">
+                           <div class="similar__title">
+                              <p>Области тьмы</p>
+                           </div>
+                           <div class="similar__poster">
+                              <img
+                                 src="https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/d3bfd32d-41b4-48ad-9584-b3fc1f5669d4/x1000"
+                                 alt="Области тьмы">
+                           </div>
+                        </div>
+                     </div>
+                  </li> -->
                </ul>
             </div>
          </div>
       </div>
    </main>
-   <script src="Js/index.js"></script>
+   <script type="module" src="Js/index.js"></script>
 </body>
 
 </html>
