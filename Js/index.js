@@ -1,5 +1,3 @@
-// import createMovie from './function.js';
-
 const movie_To_Search_Node = document.querySelector('#searchMovie')
 const search_Btn = document.querySelector('#searchBtn')
 const movieList = document.querySelector('#listFilms')
@@ -98,8 +96,6 @@ function searchMovies() {
       movies = response.docs;
       localStorage.setItem("movies", JSON.stringify(movies));
 
-      console.log(response.docs[0].name)
-
       search_Btn.removeAttribute("disabled", "disabled");
       search_Btn.style.cssText = "";
 
@@ -116,7 +112,6 @@ function renderMoviesList() {
    if (!movies) {
       return null
    }
-   console.log(movies)
 
    if (movies.length < 1) {return null}
 
@@ -204,13 +199,9 @@ function getMovieInfo(index) {
    .then (response => {
       movie = response;
       localStorage.setItem("movie", JSON.stringify(movie));
-      console.log(JSON.parse(localStorage.getItem('movie')))
-      console.log(searchFilmDirector(movie).name)
 
       renderMovieCard()
    })
-   // console.log(JSON.parse(localStorage.getItem('movie')))
-   // console.log(searchFilmDirector(movie).name)
 }
 
 // Отрисовка карточки фильма
@@ -349,9 +340,6 @@ function renderMovieCard() {
       };
       moviesToWatch.unshift(movieName);
       localStorage.setItem('moviesToWatch', JSON.stringify(moviesToWatch));
-      // moviesToWatch.unshift(movieName) 
-      // console.log(createMovie(movie.name, 'unchecked'))
-      // console.log(`${movie.name}`);
    })
    movieList.addEventListener('click', renderMoviesList);
 }
@@ -365,11 +353,8 @@ function searchFilmDirector(arr) {
       if(element.enProfession === 'director') {
          director.name = element.name;
          director.photo = element.photo;
-         // console.log(element.name)
-         // console.log(element.photo)
       }  
    });
-   // console.log(director);
    return director;
 }
 
