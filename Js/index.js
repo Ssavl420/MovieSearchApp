@@ -250,7 +250,9 @@ function renderMovieCard() {
 
    let infoGenres = document.createElement('p');
    infoGenres.className = 'info__genres';
-   infoGenres.innerHTML = `Жанр: ${movie?.genres[0]?.name} / ${movie.genres[1]?.name}`;
+   if (movie.genres[1]?.name == undefined || null) {
+      infoGenres.innerHTML = `Жанр: ${movie?.genres[0]?.name}`;
+   } else {infoGenres.innerHTML = `Жанр: ${movie?.genres[0]?.name} / ${movie.genres[1]?.name}`;}
    movieInfoWrap.appendChild(infoGenres);
 
    let infoLength = document.createElement('p');
@@ -260,12 +262,16 @@ function renderMovieCard() {
 
    let infoBudget = document.createElement('p');
    infoBudget.className = 'info__budget';
-   infoBudget.innerHTML = `Бюджет: ${(movie?.budget?.value).toLocaleString('ru-Ru')} $`;
+   if (movie?.budget?.value == undefined || null) {
+      infoBudget.style.cssText = 'display: none;';
+   } else {infoBudget.innerHTML = `Бюджет: ${(movie?.budget?.value).toLocaleString('ru-Ru')} $`;}
    movieInfoWrap.appendChild(infoBudget);
 
    let infoSales = document.createElement('p');
    infoSales.className = 'info__sales';
-   infoSales.innerHTML = `Сборы в мире: ${(movie?.fees?.world?.value).toLocaleString('ru-Ru')} $`;
+   if (movie?.fees?.world?.value == undefined || null) {
+      infoSales.style.cssText = 'display: none;';
+   } else {infoSales.innerHTML = `Сборы в мире: ${(movie?.fees?.world?.value).toLocaleString('ru-Ru')} $`;}
    movieInfoWrap.appendChild(infoSales);
 
    let infoDirector = document.createElement('p');
@@ -289,7 +295,9 @@ function renderMovieCard() {
 
    let descriptionText = document.createElement('p');
    descriptionText.className = 'description__text';
-   descriptionText.innerHTML = `${movie.description}`;
+   if (movie.description == undefined || null) {
+      descriptionText.style.cssText = 'display: none;';
+   } else {descriptionText.innerHTML = `${movie.description}`;}
    movieDescription.appendChild(descriptionText);
 
    let movieTrailer = document.createElement('div');
@@ -297,7 +305,9 @@ function renderMovieCard() {
    movieItem.appendChild(movieTrailer);
 
    let movieTrailerBtn = document.createElement('a');
-   movieTrailerBtn.setAttribute('href', `${movie?.videos?.trailers[4]?.url}`);
+   if (movie?.videos?.trailers[4]?.url == undefined || null) {
+      movieTrailer.style.cssText = 'display: none;';
+   } else {movieTrailerBtn.setAttribute('href', `${movie?.videos?.trailers[4]?.url}`);}
    movieTrailerBtn.setAttribute('target', `_blank`);
    movieTrailerBtn.innerHTML = `Трейлер`;
    movieTrailer.appendChild(movieTrailerBtn);
@@ -328,12 +338,14 @@ function renderMovieCard() {
    similarWrap.appendChild(similarPosterWrap);
 
    let similarPoster = document.createElement('img');
-   similarPoster.setAttribute('src', `${movie.similarMovies[0].poster.url}`);
+   if (movie.similarMovies[0]?.poster == undefined || null) {
+      similarMovies.style.cssText = 'display: none;';
+   } else {similarPoster.setAttribute('src', `${movie.similarMovies[0].poster.url}`);}
    similarPoster.setAttribute('alt', `${movie?.similarMovies[0]?.name}`);
    similarPosterWrap.appendChild(similarPoster);
 
    addToArrayBtn.addEventListener('click', () => {
-      let moviesToWatch = [];
+      // let moviesToWatch = [];
       let movieName = {
          title: movie.name,
          checkboxValue: "unchecked"
