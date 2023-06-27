@@ -345,7 +345,6 @@ function renderMovieCard() {
    similarPosterWrap.appendChild(similarPoster);
 
    addToArrayBtn.addEventListener('click', () => {
-      // let moviesToWatch = [];
       let movieName = {
          title: movie.name,
          checkboxValue: "unchecked"
