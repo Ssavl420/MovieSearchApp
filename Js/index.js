@@ -107,13 +107,10 @@ function searchMovies() {
 // Отрисовка списка фильмов
 function renderMoviesList() {
    localStorage.removeItem('movie');
-   document.querySelector('#searchMovieForm').style.cssText = '';
+   
+   if (!movies) {return null};
 
-   if (!movies) {
-      return null
-   }
-
-   if (movies.length < 1) {return null}
+   if (movies.length < 1) {return null};
 
    movieList.innerHTML = '';
    for (let i = 0; i < movies.length; i++) {
@@ -355,7 +352,7 @@ function renderMovieCard() {
    movieList.addEventListener('click', renderMoviesList);
 }
 
-// Нужно ли мне это!?
+// Поиск режиссера. 
 function searchFilmDirector(arr) {
    let director = {}
    // director - режиссер
