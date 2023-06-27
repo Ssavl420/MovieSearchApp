@@ -146,7 +146,9 @@ function renderMoviesList() {
       shortDescription.className = 'shortDescription';
 
       film.setAttribute('id', i);
-      poster.setAttribute('src', `${movies[i]?.poster.url}`);
+      if (movies[i].poster.url == undefined) {
+         poster.setAttribute('src', ``);
+      } else {poster.setAttribute('src', `${movies[i]?.poster.url}`);}
       poster.setAttribute('alt', `${movies[i]?.name}`);
       poster.setAttribute('title', `${movies[i]?.name}`);
       rating.setAttribute('title', `Рейтинг IMDB`);
@@ -335,6 +337,7 @@ function renderMovieCard() {
    similarPosterWrap.appendChild(similarPoster);
 
    addToArrayBtn.addEventListener('click', () => {
+      let moviesToWatch = [];
       let movieName = {
          title: movie.name,
          checkboxValue: "unchecked"
