@@ -237,7 +237,7 @@ main .main__inner {
 }
 @media (max-width: 428px) {
   main .main__inner {
-    padding: 20pxv0;
+    padding: 20px 0;
   }
 }
 main .main__inner .form {

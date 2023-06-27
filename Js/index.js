@@ -113,6 +113,11 @@ function renderMoviesList() {
    localStorage.removeItem('movie');
    document.querySelector('#searchMovieForm').style.cssText = '';
 
+   if (!movies) {
+      return null
+   }
+   console.log(movies)
+
    if (movies.length < 1) {return null}
 
    movieList.innerHTML = '';
