@@ -1,4 +1,5 @@
 const movie_To_Search_Node = document.querySelector('#searchMovie')
+const searchMovieForm = document.querySelector('#searchMovieForm')
 const search_Btn = document.querySelector('#searchBtn')
 const movieList = document.querySelector('#listFilms')
 const key = 'V6697KC-1MZM6PN-HWFGXH5-FCMKD9X'
@@ -9,7 +10,7 @@ let moviesToWatch = JSON.parse(localStorage.getItem('moviesToWatch'));
 
 //-------------------------------------------------------------------------------------------------
 renderMoviesList()
-document.querySelector('#searchMovieForm').addEventListener('submit', searchBtnHandler)
+searchMovieForm.addEventListener('submit', searchBtnHandler)
 //-------------------------------------------------------------------------------------------------
 
 function searchBtnHandler(event) {
@@ -254,7 +255,9 @@ function renderMovieCard() {
 
    let infoLength = document.createElement('p');
    infoLength.className = 'info__length';
-   infoLength.innerHTML = `Продолжительность: ${movie?.movieLength} мин.`;
+   if (movie.movieLength == undefined || null) {
+      infoLength.innerHTML = `Продолжительность серии: ${movie?.seriesLength} мин.`;
+   } else {infoLength.innerHTML = `Продолжительность: ${movie?.movieLength} мин.`;}
    movieInfoWrap.appendChild(infoLength);
 
    let infoBudget = document.createElement('p');
