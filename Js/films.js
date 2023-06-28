@@ -1,6 +1,3 @@
-// import createMoviefromSearch from './function.js';
-// import {moviesToWatch} from './function.js';
-
 const input = document.querySelector('#movieTitle');
 const movieList = document.querySelector('#listFilms')
 
@@ -10,12 +7,9 @@ const LS = localStorage;
 const MOVIES_STORAGE_LABEL = 'moviesToWatch';
 
 let moviesToWatch = [];
-// let movieName = require('./index.js');
-// moviesToWatch.push(movieName);
 //=======================================================================================
 
 addMovie.addEventListener('submit', addMovieHandler)
-
 renderMovieList();
 //=======================================================================================
 

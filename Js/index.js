@@ -436,6 +436,8 @@ if (isMobile.any()) {
 }
 
 
+
+
 // `<li class="movieItem__wrap">
 //    <div class="movie__poster">
 //       <div class="movie__poster-bg"></div>
