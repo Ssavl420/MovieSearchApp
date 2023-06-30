@@ -1,15 +1,21 @@
+import { validation, 
+         newElement,
+         createError, 
+         animateElement,
+         removeError} from "./functions.js"
+
 const movie_To_Search_Node = document.querySelector('#searchMovie')
 const searchMovieForm = document.querySelector('#searchMovieForm')
 const search_Btn = document.querySelector('#searchBtn')
 const movieList = document.querySelector('#listFilms')
 const key = 'V6697KC-1MZM6PN-HWFGXH5-FCMKD9X'
 
-let movies = JSON.parse(localStorage.getItem("movies"))
-let movie = JSON.parse(localStorage.getItem('movie'))
-let moviesToWatch = JSON.parse(localStorage.getItem('moviesToWatch'));
+let movies = JSON.parse(localStorage.getItem("moviesArr"))
+let movie = JSON.parse(localStorage.getItem("movieArr"))
+let moviesToWatch = [];
 
 //-------------------------------------------------------------------------------------------------
-renderMoviesList()
+renderMovies()
 searchMovieForm.addEventListener('submit', searchBtnHandler)
 //-------------------------------------------------------------------------------------------------
 
@@ -28,35 +34,7 @@ function searchBtnHandler(event) {
    searchMovies();
 }
 
-// Валидация поля ввода
-function validation(form) {
-   let result = true;
 
-   const allInputs = form.querySelectorAll('input');
-   const pattern = /[^а-яА-ЯёЁ0-9\s\.\,\:\!\?\/]+/g;
-
-   for (const input of allInputs) {
-      removeError(input);
-      if(input.value == "") {
-         createError(input, 'Поле не заполнено')
-         animateElement(input);
-         result = false;
-      }
-      if(!input.value == "" && input.value.trim() == "") {
-         createError(input, 'Недопустимые символы')
-         clearValue(input)
-         animateElement(input);
-         result = false;
-      }
-      if(!input.value == "" && pattern.test(input.value)) {
-         createError(input, 'Недопустимые или иностранные символы')
-         clearValue(input)
-         animateElement(input);
-         result = false;
-      }
-   }
-   return result;
-}
 
 // Поиск фильма 
 function searchMovies() {
@@ -95,19 +73,19 @@ function searchMovies() {
          return null
       }
       movies = response.docs;
-      localStorage.setItem("movies", JSON.stringify(movies));
+      localStorage.setItem("moviesArr", JSON.stringify(movies));
 
       search_Btn.removeAttribute("disabled", "disabled");
       search_Btn.style.cssText = "";
 
       clearValue(movie_To_Search_Node);
-      renderMoviesList();
+      renderMovies();
    })
 }
 
 // Отрисовка списка фильмов
-function renderMoviesList() {
-   localStorage.removeItem('movie');
+function renderMovies() {
+   localStorage.removeItem("movieArr");
    
    if (!movies) {return null};
 
@@ -116,66 +94,120 @@ function renderMoviesList() {
    movieList.innerHTML = '';
    for (let i = 0; i < movies.length; i++) {
 
-      let film = document.createElement('li');
-      let filmInner = document.createElement('div');
-      let filmPoster = document.createElement('div');
-      let poster = document.createElement('img');
-      let rating = document.createElement('p');
-      let filmBody = document.createElement('div');
-      let filmHeader = document.createElement('div');
-      let movieTitle = document.createElement('p');
-      let filmInfo = document.createElement('div');
-      let movieGenre = document.createElement('p');
-      let movieYear = document.createElement('p');
-      let movieLength = document.createElement('p');
-      let shortDescription = document.createElement('p');
+      const film = newElement({
+         tag: 'li',
+         params: {
+            classList: ['film'],
+            id: i,
+         },
+         parent: movieList
+      });
 
-      film.className = 'film';
-      filmInner.className = 'film__inner';
-      filmPoster.className = 'film__poster';
-      rating.className = 'rating';
-      filmBody.className = 'film__body';
-      filmHeader.className = 'film__header';
-      movieTitle.className = 'title';
-      filmInfo.className = 'film__info';
-      movieGenre.className = 'genres';
-      movieYear.className = 'years';
-      movieLength.className = 'film__length';
-      shortDescription.className = 'shortDescription';
+      const filmInner = newElement({
+         tag: 'div',
+         params: {
+            classList: ['film__inner'],
+         },
+         parent: film
+      });
 
-      film.setAttribute('id', i);
-      if (movies[i].poster.url == undefined) {
-         poster.setAttribute('src', ``);
-      } else {poster.setAttribute('src', `${movies[i]?.poster.url}`);}
-      poster.setAttribute('alt', `${movies[i]?.name}`);
-      poster.setAttribute('title', `${movies[i]?.name}`);
-      rating.setAttribute('title', `Рейтинг IMDB`);
+      const filmPoster = newElement({
+         tag: 'div',
+         params: {
+            classList: ['film__poster'],
+         },
+         elements: [
+            {
+               tag: 'img',
+               params: {
+                  src: `${movies[i]?.poster.url}`,
+                  alt: `${movies[i]?.name}`,
+                  title: `${movies[i]?.name}`,
+               }
+            },
+            {
+               tag: 'p',
+               params: {
+                  classList: ['rating'],
+                  title: `Рейтинг IMDB`,
+                  innerHTML: `${movies[i]?.rating?.imdb}`,
+               }
+            }
+         ],
+         parent: filmInner
+      });
 
-      rating.innerHTML = `${movies[i]?.rating?.imdb}`;
-      movieTitle.innerHTML = `${movies[i]?.name}`;
-      movieYear.innerHTML = `${movies[i]?.year}`;
+      const filmBody = newElement({
+         tag: 'div',
+         params: {
+            classList: ['film__body'],
+         },
+         parent: filmInner
+      });
 
-      if(movies[i]?.genres[1]?.name == undefined) {
-         movieGenre.innerHTML = `${movies[i]?.genres[0]?.name}`;
-      } else {movieGenre.innerHTML = `${movies[i]?.genres[0]?.name} / ${movies[i]?.genres[1]?.name}`};
+      const filmHeader = newElement({
+         tag: 'div',
+         params: {
+            classList: ['film__header'],
+         },
+         elements: [
+            {
+               tag: 'p',
+               params: {
+                  classList: ['title'],
+                  innerHTML: `${movies[i]?.name}`,
+               }
+            }
+         ],
+         parent: filmBody
+      });
 
-      if(movies[i]?.shortDescription === null) {
-         shortDescription.innerHTML = '';
-      } else {shortDescription.innerHTML = `${movies[i]?.shortDescription}`};
+      const filmInfo = newElement({
+         tag: 'div',
+         params: {
+            classList: ['film__info'],
+         },
+         elements: [
+            {
+               tag: 'p',
+               params: {
+                  classList: ['genres'],
+                  innerHTML: `${movies[i]?.genres[0]?.name}`,
+               }
+            },
+            {
+               tag: 'p',
+               params: {
+                  classList: ['genres'],
+                  innerHTML: `${movies[i]?.genres[1]?.name}`,
+               }
+            },
+            {
+               tag: 'p',
+               params: {
+                  classList: ['years'],
+                  innerHTML: `${movies[i]?.year}`,
+               }
+            },
+            {
+               tag: 'p',
+               params: {
+                  classList: ['film__length'],
+                  innerHTML: `Продолжительность: ${movies[i]?.movieLength} мин.`,
+               }
+            },
+         ],
+         parent: filmHeader
+      });
 
-      movieList.appendChild(film);
-      film.appendChild(filmInner);
-      filmInner.appendChild(filmPoster);
-      filmPoster.appendChild(poster);
-      filmPoster.appendChild(rating);
-      filmInner.appendChild(filmBody);
-      filmBody.appendChild(filmHeader);
-      filmHeader.appendChild(movieTitle);
-      filmHeader.appendChild(filmInfo);
-      filmInfo.appendChild(movieYear);
-      filmInfo.appendChild(movieGenre);
-      filmInfo.appendChild(movieLength)
-      filmBody.appendChild(shortDescription);
+      const shortDescription = newElement({
+         tag: 'p',
+         params: {
+            classList: ['shortDescription'],
+            innerHTML: `${movies[i]?.shortDescription}`,
+         },
+         parent: filmBody
+      });
 
       film.addEventListener('click', () => getMovieInfo(i));
    }
@@ -345,14 +377,17 @@ function renderMovieCard() {
    similarPosterWrap.appendChild(similarPoster);
 
    addToArrayBtn.addEventListener('click', () => {
+      if (!localStorage.getItem("moviesToWatch")) {
+         let moviesToWatch = [];
+      } else { moviesToWatch = JSON.parse(localStorage.getItem("moviesToWatch"))}
       let movieName = {
          title: movie.name,
          checkboxValue: "unchecked"
       };
       moviesToWatch.unshift(movieName);
-      localStorage.setItem('moviesToWatch', JSON.stringify(moviesToWatch));
+      localStorage.setItem("moviesToWatch", JSON.stringify(moviesToWatch));
    })
-   movieList.addEventListener('click', renderMoviesList);
+   movieList.addEventListener('click', renderMovies);
 }
 
 // Поиск режиссера. 
@@ -374,34 +409,10 @@ function clearValue(element) {
    element.value = null;
 }
 
-// Анимация элемента
-function animateElement(element) {
-   element.classList.add('animation')
-   
-   setTimeout(() => {
-      element.classList.remove('animation')
-   }, 400);
-}
 
-// Создание ошибки
-function createError(input, text) {
-   const parent = input.parentNode;
-   const errorLabel = document.createElement('label');
 
-   errorLabel.classList.add('error__label');
-   errorLabel.innerText = text;
-   parent.appendChild(errorLabel);
-   parent.classList.add('error');
-}
 
-// Удаление ошибки
-function removeError(input) {
-   const parent = input.parentNode;
-   if (parent.classList.contains('error')) {
-      parent.querySelector('.error__label').remove()
-      parent.classList.remove('error')
-   }
-}
+
 // ПК или Мобильное устройство?
 const isMobile = {
    Android: function () {

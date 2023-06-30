@@ -492,12 +492,18 @@ main .main__inner .list__films ul .film .film__inner .film__body .film__header .
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size: 16px;
+  line-height: 20px;
 }
 main .main__inner .list__films ul .film .film__inner .film__body .film__header .film__info .genres::first-letter {
   text-transform: uppercase;
 }
+main .main__inner .list__films ul .film .film__inner .film__body .film__header .film__info .years {
+  margin: 5px 0;
+}
 main .main__inner .list__films ul .film .film__inner .film__body .shortDescription {
   font-size: 16px;
+  line-height: 20px;
 }
 main .main__inner .list__films ul .movieItem__wrap {
   padding: 0 20px;
