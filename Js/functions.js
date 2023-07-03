@@ -1,3 +1,17 @@
+import * as createMoviesList from "./createMoviesList.js"
+import * as createMovieCard from "./createMovieCard.js"
+
+const movie_To_Search_Node = document.querySelector('#searchMovie')
+const search_Btn = document.querySelector('#searchBtn')
+export const searchMovieForm = document.querySelector('#searchMovieForm')
+
+let movies = JSON.parse(localStorage.getItem("moviesArr"))
+let movie = JSON.parse(localStorage.getItem("movieArr"))
+const movieList = document.querySelector('#listFilms')
+const key = 'V6697KC-1MZM6PN-HWFGXH5-FCMKD9X'
+
+let moviesToWatch = []
+
 // Валидация поля ввода
 export function validation(form) {
    let result = true;
@@ -89,4 +103,208 @@ export function animateElement(element) {
    setTimeout(() => {
       element.classList.remove('animation')
    }, 400);
+}
+
+// Поиск фильма 
+export function searchMovies() {
+   const movieTitle = movie_To_Search_Node.value;
+
+   removeError(movie_To_Search_Node);
+
+   search_Btn.style.cssText = 'background-color: gray;';
+   search_Btn.setAttribute("disabled", "disabled");
+
+   fetch(`https://api.kinopoisk.dev/v1.3/movie?name=${movieTitle}&poster.url=%21null`, {   // Ограничение 200 запросов в сутки!!
+      method: 'GET',
+      headers: {
+         'X-API-KEY': key,
+      }
+   })
+   .then (data => {
+      if (data.status !== 200) {
+         search_Btn.removeAttribute("disabled", "disabled");
+         search_Btn.style.cssText = "";
+         animateElement(movie_To_Search_Node);
+         createError(movie_To_Search_Node, 'Ошибка на сервере, попробуйте еще раз позже!')
+         clearValue(movie_To_Search_Node);
+         movie_To_Search_Node.focus();
+         return null;
+      }
+      return data.json()})
+   .then (response => {
+      if (response.docs.length < 1) {
+         search_Btn.removeAttribute("disabled", "disabled");
+         search_Btn.style.cssText = "";
+         animateElement(movie_To_Search_Node);
+         createError(movie_To_Search_Node, 'Неизвестная ошибка, попробуйте еще раз!')
+         clearValue(movie_To_Search_Node);
+         movie_To_Search_Node.focus();
+         return null
+      }
+      movies = response.docs;
+      localStorage.setItem("moviesArr", JSON.stringify(movies));
+
+      search_Btn.removeAttribute("disabled", "disabled");
+      search_Btn.style.cssText = "";
+
+      clearValue(movie_To_Search_Node);
+      renderMovies();
+   })
+}
+
+// Отрисовка списка фильмов
+export function renderMovies() {
+   localStorage.removeItem("movieArr");
+   searchMovieForm.style.cssText = null;
+
+   if (movies.length < 1) {return null};
+
+   movieList.innerHTML = '';
+   for (let index = 0; index < movies.length; index++) {
+
+      const film = createMoviesList.createFilm(index, movieList)
+
+      const filmInner = createMoviesList.createFilmInner(film)
+
+      const filmPosterWrap = createMoviesList.createFilmPoster(filmInner)
+
+      const poster = createMoviesList.createFilmPosterIMG(movies, index, filmPosterWrap)
+
+      const rating = createMoviesList.createFilmRating(movies, index, filmPosterWrap)
+
+      const filmBody = createMoviesList.createFilmBody(filmInner)
+
+      const filmHeader = createMoviesList.createFilmHeader(filmBody)
+
+      const title = createMoviesList.createFilmTitle(movies, index, filmHeader)
+
+      const filmInfo = createMoviesList.createFilmInfo(filmHeader)
+
+      createMoviesList.createFilmGenre(movies, index, filmInfo)
+
+      createMoviesList.createFilmYear(movies, index, filmInfo)
+
+      createMoviesList.createFilmLength(movies, index, filmInfo)
+
+      createMoviesList.createFilmDescription(movies, index, filmBody)
+
+      film.addEventListener('click', () => getMovieInfo(movies, index));
+   }
+}
+
+// Получение данных о фильме
+function getMovieInfo(array, index) {
+   fetch(`https://api.kinopoisk.dev/v1.3/movie/${array[index].id}`, {   // Ограничение 200 запросов в сутки!!
+      method: 'GET',
+      headers: {
+         'X-API-KEY': key,
+      }
+   })
+   .then (data => {
+      if (data.status !== 200) {
+         return null;
+      }
+   return data.json()})
+   .then (response => {
+      movie = response;
+      localStorage.setItem("movie", JSON.stringify(movie));
+
+      renderMovieCard()
+   })
+}
+
+// Отрисовка карточки фильма
+function renderMovieCard() {
+
+   movieList.innerHTML = '';
+   searchMovieForm.style.cssText = 'display: none';
+
+   const movieItem = createMovieCard.movieItem(movieList)
+
+   const moviePosterWrap = createMovieCard.moviePosterWrap(movieItem)
+
+   const moviePosterBG = createMovieCard.moviePosterBG(movie, moviePosterWrap)
+
+   const moviePoster = createMovieCard.moviePoster(movie, moviePosterWrap)
+
+   const movieInfo = createMovieCard.movieInfo(movieItem)
+
+   const movieInfoWrap = createMovieCard.movieInfoWrap(movieInfo)
+
+   const infoTitle = createMovieCard.infoTitle(movie, movieInfoWrap)
+
+   const infoYear = createMovieCard.infoYear(movie, movieInfoWrap)
+
+   const infoGenres = createMovieCard.infoGenres(movie, movieInfoWrap)
+
+   const infoLength = createMovieCard.infoLength(movie, movieInfoWrap)
+
+   const infoBudget = createMovieCard.infoBudget(movie, movieInfoWrap)
+
+   const infoSales = createMovieCard.infoSales(movie, movieInfoWrap)
+
+   const infoDirector = createMovieCard.infoDirector(movie, movieInfoWrap)
+
+   const infoActors = createMovieCard.infoActors(movie, movieInfoWrap)
+
+   const addToArrayBtn = createMovieCard.addToArrayBtn(movieInfo)
+
+   const movieDescription = createMovieCard.movieDescription(movieItem)
+
+   const descriptionText = createMovieCard.descriptionText(movie, movieDescription)
+
+   const movieTrailer = createMovieCard.movieTrailer(movieItem)
+
+   const movieTrailerBtn = createMovieCard.movieTrailerBtn(movie, movieTrailer)
+
+   const similarMovies = createMovieCard.similarMovies(movieItem)
+
+   const similarTitle = createMovieCard.similarTitle(similarMovies)
+
+   const similarWrap = createMovieCard.similarWrap(similarMovies)
+
+   const similarMovieTitleWrap = createMovieCard.similarMovieTitleWrap(similarWrap)
+
+   const similarMovieTitle = createMovieCard.similarMovieTitle(movie, similarMovieTitleWrap)
+
+   const similarPosterWrap = createMovieCard.similarPosterWrap(similarWrap)
+
+   const similarPoster = createMovieCard.similarPoster(movie, similarPosterWrap, similarMovies)
+
+   similarPoster.addEventListener('click', () => getMovieInfo(movie.similarMovies, 0))
+   addToArrayBtn.addEventListener('click', writeToWatchList)
+   movieList.addEventListener('click', renderMovies);
+}
+
+
+//Запись фильма в список для просмотра.
+function writeToWatchList() {
+   if (!localStorage.getItem("moviesToWatch")) {
+      let moviesToWatch = [];
+   } else { moviesToWatch = JSON.parse(localStorage.getItem("moviesToWatch"))}
+   let movieName = {
+      title: movie.name,
+      checkboxValue: "unchecked"
+   };
+   moviesToWatch.unshift(movieName);
+   localStorage.setItem("moviesToWatch", JSON.stringify(moviesToWatch));
+}
+
+// // Поиск режиссера. 
+// function searchFilmDirector(arr) {
+//    let director = {}
+//    // director - режиссер
+//    // console.log(movie.persons[0].enProfession == 'actor')
+//    arr.persons.forEach(element => {
+//       if(element.enProfession === 'director') {
+//          director.name = element.name;
+//          director.photo = element.photo;
+//       }  
+//    });
+//    return director;
+// }
+
+// Очищение поля input
+function clearValue(element) {
+   element.value = null;
 }

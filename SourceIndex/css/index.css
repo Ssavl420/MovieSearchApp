@@ -524,7 +524,7 @@ main .main__inner .list__films ul .movieItem__wrap .movie__poster .movie__poster
   position: absolute;
   top: 0;
   left: 0;
-  filter: blur(15px) brightness(60%) saturate(50%);
+  filter: blur(15px) brightness(70%) saturate(80%);
   background: url("") center;
 }
 main .main__inner .list__films ul .movieItem__wrap .movie__poster img {
@@ -545,7 +545,7 @@ main .main__inner .list__films ul .movieItem__wrap .movie__info {
   flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
   font-size: 16px;
   text-align: left;
 }
@@ -567,6 +567,11 @@ main .main__inner .list__films ul .movieItem__wrap .movie__info .header__btn {
   width: max-content;
   height: 30px;
 }
+@media (max-width: 826px) {
+  main .main__inner .list__films ul .movieItem__wrap .movie__info .header__btn {
+    margin: 0 auto;
+  }
+}
 @media (max-width: 428px) {
   main .main__inner .list__films ul .movieItem__wrap .movie__info .header__btn {
     font-size: 10px;
@@ -575,6 +580,11 @@ main .main__inner .list__films ul .movieItem__wrap .movie__info .header__btn {
 }
 main .main__inner .list__films ul .movieItem__wrap .movie__trailer {
   width: 100%;
+}
+@media (max-width: 826px) {
+  main .main__inner .list__films ul .movieItem__wrap .movie__trailer {
+    text-align: center;
+  }
 }
 main .main__inner .list__films ul .movieItem__wrap .movie__trailer::after {
   display: block;

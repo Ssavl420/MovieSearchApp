@@ -403,7 +403,7 @@ flex: 0 1 100%;
                      position: absolute;
                      top: 0;
                      left: 0;
-                     filter: blur(15px) brightness(60%) saturate(50%);
+                     filter: blur(15px) brightness(70%) saturate(80%);
                      background: url('') center;
                   }
                   img {
@@ -423,7 +423,7 @@ flex: 0 1 100%;
                   flex-direction: column;
                   justify-content: space-between;
                   flex-wrap: wrap;
-                  gap: 10px;
+                  gap: 20px;
                   font-size: 16px;
                   text-align: left;
                   @media (max-width: 826px) {
@@ -455,6 +455,9 @@ flex: 0 1 100%;
                   .header__btn {
                      width: max-content;
                      height: 30px;
+                     @media (max-width: 826px) {
+                        margin: 0 auto;
+                     }
                      @media (max-width: 428px) {
                         font-size: 10px;
                         line-height: 12px;
@@ -467,6 +470,9 @@ flex: 0 1 100%;
                }
                .movie__trailer {
                   width: 100%;
+                  @media (max-width: 826px) {
+                     text-align: center;
+                  }
                   &::after {
                      display: block;
                      content: '';
