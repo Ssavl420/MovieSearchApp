@@ -641,13 +641,18 @@ main .main__inner .list__films ul .movieItem__wrap .movie__trailer::after {
 }
 main .main__inner .list__films ul .movieItem__wrap .similar__movies {
   display: flex;
-  gap: 15px;
   flex-wrap: wrap;
 }
 main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__title {
   width: 100%;
 }
-main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__wrap {
+main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__movies_wrap {
+  margin: 15px 0 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__movies_wrap .similar__wrap {
   max-width: 150px;
   display: flex;
   flex-direction: column;
@@ -655,10 +660,15 @@ main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__wr
   align-items: center;
   gap: 5px;
 }
-main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__poster {
+@media (max-width: 428px) {
+  main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__movies_wrap .similar__wrap {
+    max-width: 100px;
+  }
+}
+main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__movies_wrap .similar__poster {
   width: 100%;
 }
-main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__poster img {
+main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__movies_wrap .similar__poster img {
   width: 100%;
   border-radius: 10px;
 }/*# sourceMappingURL=index.css.map */

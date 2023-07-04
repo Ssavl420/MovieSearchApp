@@ -261,17 +261,26 @@ function renderMovieCard() {
 
    const similarTitle = createMovieCard.similarTitle(similarMovies)
 
-   const similarWrap = createMovieCard.similarWrap(similarMovies)
+   const similarMoviesWrap = createMovieCard.similarMoviesWrap(similarMovies)
 
-   const similarMovieTitleWrap = createMovieCard.similarMovieTitleWrap(similarWrap)
+   if (movie.similarMovies.length > 0) {
 
-   const similarMovieTitle = createMovieCard.similarMovieTitle(movie, similarMovieTitleWrap)
+      for (let index = 0; index < movie.similarMovies.length; index++) {
+   
+         const similarWrap = createMovieCard.similarWrap(similarMoviesWrap)
+   
+         const similarMovieTitleWrap = createMovieCard.similarMovieTitleWrap(similarWrap)
+      
+         // const similarMovieTitle = createMovieCard.similarMovieTitle(movie, similarMovieTitleWrap)
+      
+         const similarPosterWrap = createMovieCard.similarPosterWrap(similarWrap)
+      
+         const similarPoster = createMovieCard.similarPoster(movie.similarMovies, similarPosterWrap, similarWrap, index)
+      
+         similarPoster.addEventListener('click', () => getMovieInfo(movie.similarMovies, index))
+      };
+   } else {document.querySelector('.similar__movies').style.cssText = 'display: none;';}
 
-   const similarPosterWrap = createMovieCard.similarPosterWrap(similarWrap)
-
-   const similarPoster = createMovieCard.similarPoster(movie, similarPosterWrap, similarMovies)
-
-   similarPoster.addEventListener('click', () => getMovieInfo(movie.similarMovies, 0))
    addToArrayBtn.addEventListener('click', writeToWatchList)
    movieList.addEventListener('click', renderMovies);
 }

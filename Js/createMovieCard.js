@@ -188,14 +188,22 @@ export function similarMovies(parent) {
 export function similarTitle(parent) {
    const similarTitle = document.createElement('p');
    similarTitle.className = 'similar__title';
-   similarTitle.innerHTML = `Похожий фильм`;
+   similarTitle.innerHTML = `Похожие фильмы`;
    parent.appendChild(similarTitle);
 
    return similarTitle
 }
 
+export function similarMoviesWrap(parent) {
+   const similarMoviesWrap = document.createElement('ol')
+   similarMoviesWrap.className = 'similar__movies_wrap';
+   parent.appendChild(similarMoviesWrap)
+
+   return similarMoviesWrap;
+}
+
 export function similarWrap(parent) {
-   const similarWrap = document.createElement('div');
+   const similarWrap = document.createElement('li');
    similarWrap.className = 'similar__wrap';
    parent.appendChild(similarWrap);
 
@@ -210,13 +218,13 @@ export function similarMovieTitleWrap(parent) {
    return similarMovieTitleWrap
 }
 
-export function similarMovieTitle(array, parent) {
-   const similarMovieTitle = document.createElement('p');
-   similarMovieTitle.innerHTML = `${array?.similarMovies[0]?.name}`;
-   parent.appendChild(similarMovieTitle);
+// export function similarMovieTitle(array, parent) {
+//    const similarMovieTitle = document.createElement('p');
+//    similarMovieTitle.innerHTML = `${array?.similarMovies[0]?.name}`;
+//    parent.appendChild(similarMovieTitle);
 
-   return similarMovieTitle
-}
+//    return similarMovieTitle
+// }
 
 export function similarPosterWrap(parent) {
    const similarPosterWrap = document.createElement('div');
@@ -226,12 +234,13 @@ export function similarPosterWrap(parent) {
    return similarPosterWrap
 }
 
-export function similarPoster(array, parent, oldParent) {
+export function similarPoster(array, parent, oldParent, id) {
    const similarPoster = document.createElement('img');
-   if (array.similarMovies[0]?.poster == undefined || null) {
-      oldParent.style.cssText = 'display: none;';
-   } else {similarPoster.setAttribute('src', `${array.similarMovies[0].poster.url}`);}
-   similarPoster.setAttribute('alt', `${array?.similarMovies[0]?.name}`);
+   // if (array[id]?.poster == undefined || null) {
+   //    oldParent.style.cssText = 'display: none;';
+   // } else {similarPoster.setAttribute('src', `${array[id].poster.url}`);}
+   similarPoster.setAttribute('src', `${array[id].poster.url}`)
+   similarPoster.setAttribute('alt', `${array[id]?.name}`);
    parent.appendChild(similarPoster);
 
    return similarPoster
