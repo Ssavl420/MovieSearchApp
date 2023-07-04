@@ -654,7 +654,9 @@ main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__ti
 }
 main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__movies_wrap {
   margin: 15px 0 0 0;
+  width: 100%;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 10px;
 }

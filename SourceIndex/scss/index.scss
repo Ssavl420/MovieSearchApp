@@ -527,7 +527,9 @@ flex: 0 1 100%;
                   }
                   .similar__movies_wrap {
                      margin: 15px 0 0 0;
+                     width: 100%;
                      display: flex;
+                     justify-content: center;
                      flex-wrap: wrap;
                      gap: 10px;
                      .similar__wrap {
