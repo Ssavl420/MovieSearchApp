@@ -452,6 +452,10 @@ flex: 0 1 100%;
                      .info__title {
                         margin: 0 0 15px 0;
                         font-size: 40px;
+                        @media (max-width: 428px) {
+                           font-size: 30px;
+                           line-height: 34px;
+                        }
                      }
                      .info__year {
                      }

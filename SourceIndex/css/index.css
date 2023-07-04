@@ -587,6 +587,12 @@ main .main__inner .list__films ul .movieItem__wrap .movie__info .movie__info-wra
   margin: 0 0 15px 0;
   font-size: 40px;
 }
+@media (max-width: 428px) {
+  main .main__inner .list__films ul .movieItem__wrap .movie__info .movie__info-wrap .info__title {
+    font-size: 30px;
+    line-height: 34px;
+  }
+}
 main .main__inner .list__films ul .movieItem__wrap .movie__info .header__btn {
   width: max-content;
   height: 30px;
