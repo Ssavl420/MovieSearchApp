@@ -234,11 +234,8 @@ export function similarPosterWrap(parent) {
    return similarPosterWrap
 }
 
-export function similarPoster(array, parent, oldParent, id) {
+export function similarPoster(array, parent, id) {
    const similarPoster = document.createElement('img');
-   // if (array[id]?.poster == undefined || null) {
-   //    oldParent.style.cssText = 'display: none;';
-   // } else {similarPoster.setAttribute('src', `${array[id].poster.url}`);}
    similarPoster.setAttribute('src', `${array[id].poster.url}`)
    similarPoster.setAttribute('alt', `${array[id]?.name}`);
    parent.appendChild(similarPoster);

@@ -266,6 +266,8 @@ function renderMovieCard() {
    if (movie.similarMovies.length > 0) {
 
       for (let index = 0; index < movie.similarMovies.length; index++) {
+
+         if (index === 6) break;
    
          const similarWrap = createMovieCard.similarWrap(similarMoviesWrap)
    
@@ -275,7 +277,7 @@ function renderMovieCard() {
       
          const similarPosterWrap = createMovieCard.similarPosterWrap(similarWrap)
       
-         const similarPoster = createMovieCard.similarPoster(movie.similarMovies, similarPosterWrap, similarWrap, index)
+         const similarPoster = createMovieCard.similarPoster(movie.similarMovies, similarPosterWrap, index)
       
          similarPoster.addEventListener('click', () => getMovieInfo(movie.similarMovies, index))
       };
