@@ -166,6 +166,7 @@ export function movieTrailer(parent) {
 
 export function movieTrailerBtn(array, parent) {
    const movieTrailerBtn = document.createElement('a');
+   movieTrailerBtn.className = 'header__btn';
    if (array?.videos?.trailers[4]?.url == undefined || null) {
       parent.style.cssText = 'display: none;';
    } else {movieTrailerBtn.setAttribute('href', `${array?.videos?.trailers[4]?.url}`);}
