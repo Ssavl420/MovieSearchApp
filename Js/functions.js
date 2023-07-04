@@ -155,6 +155,7 @@ export function searchMovies() {
 
 // Отрисовка списка фильмов
 export function renderMovies() {
+   if (localStorage.getItem("movieArr") !== null) {movie = JSON.parse(localStorage.getItem("movieArr")); renderMovieCard(); return null};
    if (localStorage.getItem("moviesArr") !== null) movies = JSON.parse(localStorage.getItem("moviesArr"));
 
    searchMovieForm.style.cssText = null;
@@ -287,7 +288,7 @@ function renderMovieCard() {
    } else {document.querySelector('.similar__movies').style.cssText = 'display: none;';}
 
    addToArrayBtn.addEventListener('click', writeToWatchList)
-   movieList.addEventListener('click', renderMovies);
+   movieList.addEventListener('click', () => {localStorage.removeItem('movieArr'); renderMovies()});
 }
 
 
