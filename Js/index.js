@@ -8,9 +8,6 @@ import {
 
 renderMovies()
 searchMovieForm.addEventListener('submit', searchBtnHandler)
-document.querySelectorAll('.header__btn' () => {
-   window.navigator.vibrate(200)
-})
 
 function searchBtnHandler(event) {
    event.preventDefault();
