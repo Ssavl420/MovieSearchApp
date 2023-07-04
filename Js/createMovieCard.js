@@ -236,7 +236,7 @@ export function similarPosterWrap(parent) {
 
 export function similarPoster(array, parent, id) {
    const similarPoster = document.createElement('img');
-   similarPoster.setAttribute('src', `${array[id].poster.url}`)
+   similarPoster.setAttribute('src', `${array[id].poster.previewUrl}`)
    similarPoster.setAttribute('alt', `${array[id]?.name}`);
    parent.appendChild(similarPoster);
 
