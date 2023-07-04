@@ -5,6 +5,8 @@ const movie_To_Search_Node = document.querySelector('#searchMovie')
 const search_Btn = document.querySelector('#searchBtn')
 export const searchMovieForm = document.querySelector('#searchMovieForm')
 
+// let movies = []
+// let movie = []
 let movies = JSON.parse(localStorage.getItem("moviesArr"))
 let movie = JSON.parse(localStorage.getItem("movieArr"))
 const movieList = document.querySelector('#listFilms')
@@ -114,6 +116,8 @@ export function searchMovies() {
    search_Btn.style.cssText = 'background-color: gray;';
    search_Btn.setAttribute("disabled", "disabled");
 
+   console.log(localStorage.getItem("moviesArr"))
+
    fetch(`https://api.kinopoisk.dev/v1.3/movie?name=${movieTitle}&poster.url=%21null`, {   // Ограничение 200 запросов в сутки!!
       method: 'GET',
       headers: {
@@ -207,7 +211,7 @@ function getMovieInfo(array, index) {
    return data.json()})
    .then (response => {
       movie = response;
-      localStorage.setItem("movie", JSON.stringify(movie));
+      localStorage.setItem("movieArr", JSON.stringify(movie));
 
       renderMovieCard()
    })
