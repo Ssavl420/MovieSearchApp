@@ -2,14 +2,15 @@ import * as createMoviesList from "./createMoviesList.js"
 import * as createMovieCard from "./createMovieCard.js"
 
 export const movie_To_Search_Node = document.querySelector('#searchMovie')
-const search_Btn = document.querySelector('#searchBtn')
+export const searchMoviesHeaderBtn = document.querySelector('#searchMoviesHeaderBtn')
 export const searchMovieForm = document.querySelector('#searchMovieForm')
-
+const movieList = document.querySelector('#listFilms')
+const search_Btn = document.querySelector('#searchBtn')
+const key = 'V6697KC-1MZM6PN-HWFGXH5-FCMKD9X'
 
 let movies = []
 let movie = []
-const movieList = document.querySelector('#listFilms')
-const key = 'V6697KC-1MZM6PN-HWFGXH5-FCMKD9X'
+
 
 let moviesToWatch = []
 
@@ -303,6 +304,10 @@ function writeToWatchList() {
    };
    moviesToWatch.unshift(movieName);
    localStorage.setItem("moviesToWatch", JSON.stringify(moviesToWatch));
+}
+
+export function clearMovieLS() {
+   localStorage.removeItem('movieArr')
 }
 
 // // Поиск режиссера. 

@@ -2,12 +2,15 @@ import {
    validation,
    renderMovies,
    searchMovies,
+   clearMovieLS,
    searchMovieForm,
-   movie_To_Search_Node } from "./functions.js"
+   movie_To_Search_Node,
+   searchMoviesHeaderBtn } from "./functions.js"
 
 
 renderMovies()
 searchMovieForm.addEventListener('submit', searchBtnHandler)
+searchMoviesHeaderBtn.addEventListener('click', clearMovieLS)
 
 function searchBtnHandler(event) {
    event.preventDefault();
