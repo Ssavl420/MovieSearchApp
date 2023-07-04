@@ -2,7 +2,9 @@ import {
    validation,
    renderMovies,
    searchMovies,
-   searchMovieForm } from "./functions.js"
+   searchMovieForm,
+   movie_To_Search_Node } from "./functions.js"
+
 
 renderMovies()
 searchMovieForm.addEventListener('submit', searchBtnHandler)
@@ -17,7 +19,7 @@ function searchBtnHandler(event) {
    }
    console.log('Валидация пройдена')
    
-   localStorage.removeItem('movies');
+   localStorage.removeItem('moviesArr');
 
    searchMovies();
 }

@@ -1,14 +1,13 @@
 import * as createMoviesList from "./createMoviesList.js"
 import * as createMovieCard from "./createMovieCard.js"
 
-const movie_To_Search_Node = document.querySelector('#searchMovie')
+export const movie_To_Search_Node = document.querySelector('#searchMovie')
 const search_Btn = document.querySelector('#searchBtn')
 export const searchMovieForm = document.querySelector('#searchMovieForm')
 
-// let movies = []
-// let movie = []
-let movies = JSON.parse(localStorage.getItem("moviesArr"))
-let movie = JSON.parse(localStorage.getItem("movieArr"))
+
+let movies = []
+let movie = []
 const movieList = document.querySelector('#listFilms')
 const key = 'V6697KC-1MZM6PN-HWFGXH5-FCMKD9X'
 
@@ -116,8 +115,6 @@ export function searchMovies() {
    search_Btn.style.cssText = 'background-color: gray;';
    search_Btn.setAttribute("disabled", "disabled");
 
-   console.log(localStorage.getItem("moviesArr"))
-
    fetch(`https://api.kinopoisk.dev/v1.3/movie?name=${movieTitle}&poster.url=%21null`, {   // Ограничение 200 запросов в сутки!!
       method: 'GET',
       headers: {
@@ -158,10 +155,12 @@ export function searchMovies() {
 
 // Отрисовка списка фильмов
 export function renderMovies() {
-   localStorage.removeItem("movieArr");
+   if (localStorage.getItem("moviesArr") !== null) movies = JSON.parse(localStorage.getItem("moviesArr"));
+
    searchMovieForm.style.cssText = null;
 
-   if (movies.length < 1) {return null};
+   if (movies == null || undefined) {movieList.innerHTML = ''; return null};
+   if (movies.length < 1) {movieList.innerHTML = ''; return null};
 
    movieList.innerHTML = '';
    for (let index = 0; index < movies.length; index++) {

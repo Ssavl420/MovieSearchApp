@@ -100,10 +100,10 @@ header {
       display: flex;
       flex-direction: column;
       @media (max-width: 640px) {
-         padding: 0 40px;
+         padding: 0 0 0 40px;
       }
       @media (max-width: 428px) {
-         padding: 0 15px;
+         padding: 0 0 0 15px;
       }
       .header__btn-wrap {
          height: 30px;

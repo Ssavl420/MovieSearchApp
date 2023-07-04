@@ -169,12 +169,12 @@ header .header__inner {
 }
 @media (max-width: 640px) {
   header .header__inner {
-    padding: 0 40px;
+    padding: 0 0 0 40px;
   }
 }
 @media (max-width: 428px) {
   header .header__inner {
-    padding: 0 15px;
+    padding: 0 0 0 15px;
   }
 }
 header .header__inner .header__btn-wrap {
