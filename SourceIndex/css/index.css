@@ -162,6 +162,7 @@ body._touch main .main__inner .form .input__btn:hover {
 .header__btn:hover {
   background: #fff;
   color: #6532F8;
+  box-shadow: 0px 0px 15px 5px #555;
 }
 
 header {
@@ -674,6 +675,11 @@ main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__mo
   align-items: center;
   gap: 5px;
   cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.4s ease;
+}
+main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__movies_wrap .similar__wrap:hover {
+  box-shadow: 0px 0px 15px 5px #555;
 }
 @media (max-width: 428px) {
   main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__movies_wrap .similar__wrap {
