@@ -668,6 +668,7 @@ main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__mo
   justify-content: center;
   align-items: center;
   gap: 5px;
+  cursor: pointer;
 }
 @media (max-width: 428px) {
   main .main__inner .list__films ul .movieItem__wrap .similar__movies .similar__movies_wrap .similar__wrap {
