@@ -1,4 +1,4 @@
-export function movieItem(parent) {
+export function createMovieItem(parent) {
    const movieItem = document.createElement('li');
    movieItem.className = 'movieItem__wrap';
    parent.appendChild(movieItem);
@@ -6,7 +6,7 @@ export function movieItem(parent) {
    return movieItem
 }
 
-export function moviePosterWrap(parent) {
+export function createMoviePosterWrap(parent) {
    const moviePosterWrap = document.createElement('div');
    moviePosterWrap.className = 'movie__poster';
    parent.appendChild(moviePosterWrap);
@@ -14,7 +14,7 @@ export function moviePosterWrap(parent) {
    return moviePosterWrap
 }
 
-export function moviePosterBG(array, parent) {
+export function createMoviePosterBG(array, parent) {
    const moviePosterBG = document.createElement('div');
    moviePosterBG.className = 'movie__poster-bg';
    moviePosterBG.style.cssText = `background: url('${array.poster.url}') center`;
@@ -23,7 +23,7 @@ export function moviePosterBG(array, parent) {
    return moviePosterBG
 }
 
-export function moviePoster(array, parent) {
+export function createMoviePoster(array, parent) {
    const moviePoster = document.createElement('img');
    moviePoster.setAttribute('src', `${array.poster.url}`);
    moviePoster.setAttribute('alt', `${array.name}`);
@@ -32,7 +32,7 @@ export function moviePoster(array, parent) {
    return moviePoster
 }
 
-export function movieInfo(parent) {
+export function createMovieInfo(parent) {
    const movieInfo = document.createElement('div');
    movieInfo.className = 'movie__info';
    parent.appendChild(movieInfo);
@@ -40,7 +40,7 @@ export function movieInfo(parent) {
    return movieInfo
 }
 
-export function movieInfoWrap(parent) {
+export function createMovieInfoWrap(parent) {
    const movieInfoWrap = document.createElement('div');
    movieInfoWrap.className = 'movie__info-wrap';
    parent.appendChild(movieInfoWrap);
@@ -48,7 +48,7 @@ export function movieInfoWrap(parent) {
    return movieInfoWrap
 }
 
-export function infoTitle(array, parent) {
+export function createInfoTitle(array, parent) {
    const infoTitle = document.createElement('p');
    infoTitle.className = 'info__title';
    infoTitle.innerHTML = `${array.name}`;
@@ -57,7 +57,7 @@ export function infoTitle(array, parent) {
    return infoTitle
 }
 
-export function infoYear(array, parent) {
+export function createInfoYear(array, parent) {
    const infoYear = document.createElement('p');
    infoYear.className = 'info__year';
    infoYear.innerHTML = `Год: ${array.year}`;
@@ -66,7 +66,7 @@ export function infoYear(array, parent) {
    return infoYear
 }
 
-export function infoGenres(array, parent) {
+export function createInfoGenres(array, parent) {
    const infoGenres = document.createElement('p');
    infoGenres.className = 'info__genres';
    if (array.genres[1]?.name == undefined || null) {
@@ -77,7 +77,7 @@ export function infoGenres(array, parent) {
    return infoGenres
 }
 
-export function infoLength(array, parent) {
+export function createInfoLength(array, parent) {
    const infoLength = document.createElement('p');
    infoLength.className = 'info__length';
    if (array.movieLength == undefined || null) {
@@ -88,7 +88,7 @@ export function infoLength(array, parent) {
    return infoLength
 }
 
-export function infoBudget(array, parent) {
+export function createInfoBudget(array, parent) {
    const infoBudget = document.createElement('p');
    infoBudget.className = 'info__budget';
    if (array?.budget?.value == undefined || null) {
@@ -99,7 +99,7 @@ export function infoBudget(array, parent) {
    return infoBudget
 }
 
-export function infoSales(array, parent) {
+export function createInfoSales(array, parent) {
    const infoSales = document.createElement('p');
    infoSales.className = 'info__sales';
    if (array?.fees?.world?.value == undefined || null) {
@@ -110,7 +110,7 @@ export function infoSales(array, parent) {
    return infoSales
 }
 
-export function infoDirector(array, parent) {
+export function createInfoDirector(array, parent) {
    const infoDirector = document.createElement('p');
    infoDirector.className = 'info__director';
    infoDirector.innerHTML = `Режиссер: ${searchFilmDirector(array).name}`;
@@ -119,7 +119,7 @@ export function infoDirector(array, parent) {
    return infoDirector
 }
 
-export function infoActors(array, parent) {
+export function createInfoActors(array, parent) {
    const infoActors = document.createElement('p');
    infoActors.className = 'info__actors';
    infoActors.innerHTML = `В ролях: ${array.persons[0].name}, ${array.persons[1].name}, ${array.persons[2].name} и другие..`;
@@ -128,7 +128,7 @@ export function infoActors(array, parent) {
    return infoActors
 }
 
-export function addToArrayBtn(parent) {
+export function createAddToArrayBtn(parent) {
    const addToArrayBtn = document.createElement('p');
    addToArrayBtn.className = 'header__btn';
    addToArrayBtn.innerHTML = `Добавить в блокнот`;
@@ -137,7 +137,7 @@ export function addToArrayBtn(parent) {
    return addToArrayBtn
 }
 
-export function movieDescription(parent) {
+export function createMovieDescription(parent) {
    const movieDescription = document.createElement('div');
    movieDescription.className = 'movie__description';
    parent.appendChild(movieDescription);
@@ -145,7 +145,7 @@ export function movieDescription(parent) {
    return movieDescription
 }
 
-export function descriptionText(array, parent) {
+export function createDescriptionText(array, parent) {
    const descriptionText = document.createElement('p');
    descriptionText.className = 'description__text';
    if (array.description == undefined || null) {
@@ -156,7 +156,7 @@ export function descriptionText(array, parent) {
    return descriptionText
 }
 
-export function movieTrailer(parent) {
+export function createMovieTrailer(parent) {
    const movieTrailer = document.createElement('div');
    movieTrailer.className = 'movie__trailer';
    parent.appendChild(movieTrailer);
@@ -164,7 +164,7 @@ export function movieTrailer(parent) {
    return movieTrailer
 }
 
-export function movieTrailerBtn(array, parent) {
+export function createMovieTrailerBtn(array, parent) {
    const movieTrailerBtn = document.createElement('a');
    movieTrailerBtn.className = 'header__btn';
    if (array?.videos?.trailers[4]?.url == undefined || null) {
@@ -177,7 +177,7 @@ export function movieTrailerBtn(array, parent) {
    return movieTrailerBtn
 }
 
-export function similarMovies(parent) {
+export function createSimilarMovies(parent) {
    const similarMovies = document.createElement('div');
    similarMovies.className = 'similar__movies';
    parent.appendChild(similarMovies);
@@ -185,7 +185,7 @@ export function similarMovies(parent) {
    return similarMovies
 }
 
-export function similarTitle(parent) {
+export function createSimilarTitle(parent) {
    const similarTitle = document.createElement('p');
    similarTitle.className = 'similar__title';
    similarTitle.innerHTML = `Похожие фильмы`;
@@ -194,7 +194,7 @@ export function similarTitle(parent) {
    return similarTitle
 }
 
-export function similarMoviesWrap(parent) {
+export function createSimilarMoviesWrap(parent) {
    const similarMoviesWrap = document.createElement('ol')
    similarMoviesWrap.className = 'similar__movies_wrap';
    parent.appendChild(similarMoviesWrap)
@@ -202,7 +202,7 @@ export function similarMoviesWrap(parent) {
    return similarMoviesWrap;
 }
 
-export function similarWrap(parent) {
+export function createSimilarWrap(parent) {
    const similarWrap = document.createElement('li');
    similarWrap.className = 'similar__wrap';
    parent.appendChild(similarWrap);
@@ -210,7 +210,7 @@ export function similarWrap(parent) {
    return similarWrap
 }
 
-export function similarMovieTitleWrap(parent) {
+export function createSimilarMovieTitleWrap(parent) {
    const similarMovieTitleWrap = document.createElement('div');
    similarMovieTitleWrap.className = 'similar__title';
    parent.appendChild(similarMovieTitleWrap);
@@ -218,15 +218,7 @@ export function similarMovieTitleWrap(parent) {
    return similarMovieTitleWrap
 }
 
-// export function similarMovieTitle(array, parent) {
-//    const similarMovieTitle = document.createElement('p');
-//    similarMovieTitle.innerHTML = `${array?.similarMovies[0]?.name}`;
-//    parent.appendChild(similarMovieTitle);
-
-//    return similarMovieTitle
-// }
-
-export function similarPosterWrap(parent) {
+export function createSimilarPosterWrap(parent) {
    const similarPosterWrap = document.createElement('div');
    similarPosterWrap.className = 'similar__poster';
    parent.appendChild(similarPosterWrap);
@@ -234,7 +226,7 @@ export function similarPosterWrap(parent) {
    return similarPosterWrap
 }
 
-export function similarPoster(array, parent, id) {
+export function createSimilarPoster(array, parent, id) {
    const similarPoster = document.createElement('img');
    similarPoster.setAttribute('src', `${array[id].poster.previewUrl}`)
    similarPoster.setAttribute('alt', `${array[id]?.name}`);
