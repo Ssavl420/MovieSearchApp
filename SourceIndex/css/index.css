@@ -646,6 +646,7 @@ main .main__inner .list__films ul .movieItem__wrap .movie__trailer::after {
   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 15%, rgb(173, 171, 171) 50%, rgba(255, 255, 255, 0) 85%);
 }
 main .main__inner .list__films ul .movieItem__wrap .similar__movies {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
