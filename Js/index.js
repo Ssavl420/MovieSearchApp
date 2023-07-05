@@ -4,7 +4,7 @@ import {
    searchMovies,
    clearMovieLS,
    searchMovieForm,
-   movie_To_Search_Node,
+   movieToSearchNode,
    searchMoviesHeaderBtn } from "./functions.js"
 
 
@@ -16,7 +16,7 @@ function searchBtnHandler(event) {
    event.preventDefault();
 
    if (validation(this) == false) {
-      movie_To_Search_Node.focus();
+      movieToSearchNode.focus();
       console.error('Валидация НЕ пройдена')
       return null;
    }

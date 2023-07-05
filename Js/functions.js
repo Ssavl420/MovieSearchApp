@@ -1,7 +1,7 @@
 import * as createMoviesList from "./createMoviesList.js"
 import * as createMovieCard from "./createMovieCard.js"
 
-export const movie_To_Search_Node = document.querySelector('#searchMovie')
+export const movieToSearchNode = document.querySelector('#searchMovie')
 export const searchMoviesHeaderBtn = document.querySelector('#searchMoviesHeaderBtn')
 export const searchMovieForm = document.querySelector('#searchMovieForm')
 const movieList = document.querySelector('#listFilms')
@@ -109,9 +109,9 @@ export function animateElement(element) {
 
 // Поиск фильма 
 export function searchMovies() {
-   const movieTitle = movie_To_Search_Node.value;
+   const movieTitle = movieToSearchNode.value;
 
-   removeError(movie_To_Search_Node);
+   removeError(movieToSearchNode);
 
    search_Btn.style.cssText = 'background-color: gray;';
    search_Btn.setAttribute("disabled", "disabled");
@@ -126,10 +126,10 @@ export function searchMovies() {
       if (data.status !== 200) {
          search_Btn.removeAttribute("disabled", "disabled");
          search_Btn.style.cssText = "";
-         animateElement(movie_To_Search_Node);
-         createError(movie_To_Search_Node, 'Ошибка на сервере, попробуйте еще раз позже!')
-         clearValue(movie_To_Search_Node);
-         movie_To_Search_Node.focus();
+         animateElement(movieToSearchNode);
+         createError(movieToSearchNode, 'Ошибка на сервере, попробуйте еще раз позже!')
+         clearValue(movieToSearchNode);
+         movieToSearchNode.focus();
          return null;
       }
       return data.json()})
@@ -137,10 +137,10 @@ export function searchMovies() {
       if (response.docs.length < 1) {
          search_Btn.removeAttribute("disabled", "disabled");
          search_Btn.style.cssText = "";
-         animateElement(movie_To_Search_Node);
-         createError(movie_To_Search_Node, 'Неизвестная ошибка, попробуйте еще раз!')
-         clearValue(movie_To_Search_Node);
-         movie_To_Search_Node.focus();
+         animateElement(movieToSearchNode);
+         createError(movieToSearchNode, 'Неизвестная ошибка, попробуйте еще раз!')
+         clearValue(movieToSearchNode);
+         movieToSearchNode.focus();
          return null
       }
       movies = response.docs;
@@ -149,7 +149,7 @@ export function searchMovies() {
       search_Btn.removeAttribute("disabled", "disabled");
       search_Btn.style.cssText = "";
 
-      clearValue(movie_To_Search_Node);
+      clearValue(movieToSearchNode);
       renderMovies();
    })
 }
