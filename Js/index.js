@@ -18,7 +18,7 @@ function searchBtnHandler(event) {
    if (validation(this) == false) {
       movieToSearchNode.focus();
       console.error('Валидация НЕ пройдена')
-      return null;
+      return;
    }
    console.log('Валидация пройдена')
    

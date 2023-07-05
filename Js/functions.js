@@ -130,7 +130,7 @@ export function searchMovies() {
          createError(movieToSearchNode, 'Ошибка на сервере, попробуйте еще раз позже!')
          clearValue(movieToSearchNode);
          movieToSearchNode.focus();
-         return null;
+         return;
       }
       return data.json()})
    .then (response => {
@@ -141,7 +141,7 @@ export function searchMovies() {
          createError(movieToSearchNode, 'Неизвестная ошибка, попробуйте еще раз!')
          clearValue(movieToSearchNode);
          movieToSearchNode.focus();
-         return null
+         return
       }
       movies = response.docs;
       localStorage.setItem("moviesArr", JSON.stringify(movies));
@@ -156,13 +156,13 @@ export function searchMovies() {
 
 // Отрисовка списка фильмов
 export function renderMovies() {
-   if (localStorage.getItem("movieArr") !== null) {movie = JSON.parse(localStorage.getItem("movieArr")); renderMovieCard(); return null};
+   if (localStorage.getItem("movieArr") !== null) {movie = JSON.parse(localStorage.getItem("movieArr")); renderMovieCard(); return};
    if (localStorage.getItem("moviesArr") !== null) movies = JSON.parse(localStorage.getItem("moviesArr"));
 
    searchMovieForm.style.cssText = null;
 
-   if (movies == null || undefined) {movieList.innerHTML = ''; return null};
-   if (movies.length < 1) {movieList.innerHTML = ''; return null};
+   if (movies == null || undefined) {movieList.innerHTML = ''; return};
+   if (movies.length < 1) {movieList.innerHTML = ''; return};
 
    movieList.innerHTML = '';
    for (let index = 0; index < movies.length; index++) {
@@ -207,7 +207,7 @@ function getMovieInfo(array, index) {
    })
    .then (data => {
       if (data.status !== 200) {
-         return null;
+         return;
       }
    return data.json()})
    .then (response => {
