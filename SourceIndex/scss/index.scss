@@ -91,6 +91,11 @@ body {
    cursor: pointer;
    border: 1px solid $color-background-btn;
    border-radius: 200px;
+   transition: $transition;
+   &:hover {
+      background: #fff;
+      color: $color-background-btn;
+   }
 }
 
 header {

@@ -157,6 +157,11 @@ body._touch main .main__inner .form .input__btn:hover {
   cursor: pointer;
   border: 1px solid #6532F8;
   border-radius: 200px;
+  transition: all 0.4s ease;
+}
+.header__btn:hover {
+  background: #fff;
+  color: #6532F8;
 }
 
 header {
