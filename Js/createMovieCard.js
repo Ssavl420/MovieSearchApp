@@ -130,7 +130,7 @@ export function createInfoActors(array, parent) {
 
 export function createAddToArrayBtn(parent) {
    const addToArrayBtn = document.createElement('p');
-   addToArrayBtn.className = 'header__btn';
+   addToArrayBtn.className = 'header__btn JS-click';
    addToArrayBtn.innerHTML = `Добавить в блокнот`;
    parent.appendChild(addToArrayBtn);
 
@@ -166,7 +166,7 @@ export function createMovieTrailer(parent) {
 
 export function createMovieTrailerBtn(array, parent) {
    const movieTrailerBtn = document.createElement('a');
-   movieTrailerBtn.className = 'header__btn';
+   movieTrailerBtn.className = 'header__btn JS-click';
    if (array?.videos?.trailers[4]?.url == undefined || null) {
       parent.style.cssText = 'display: none;';
    } else {movieTrailerBtn.setAttribute('href', `${array?.videos?.trailers[4]?.url}`);}

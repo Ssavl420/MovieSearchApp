@@ -164,6 +164,16 @@ body._touch main .main__inner .form .input__btn:hover {
   color: #6532F8;
   box-shadow: 0px 0px 15px 5px #555;
 }
+.header__btn.disabled {
+  cursor: default;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.4);
+  border: none;
+}
+.header__btn.disabled:hover {
+  color: #fff;
+  box-shadow: none;
+}
 
 header {
   padding: 25px 0 0 0;

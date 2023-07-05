@@ -286,11 +286,17 @@ function renderMovieCard() {
       };
    } else {document.querySelector('.similar__movies').style.cssText = 'display: none;';}
 
-   addToArrayBtn.addEventListener('click', writeToWatchList)
-   movieList.addEventListener('click', (event) => {
+   addToArrayBtn.addEventListener('click', () => {
+      if (event.target.classList.contains('disabled')) return;
+      addToArrayBtn.classList.add('disabled');
+      addToArrayBtn.innerHTML = "Добавлено в блокнот";
 
+      writeToWatchList()})
+   movieList.addEventListener('click', (event) => {
+      console.log(event.target.classList)
       if (event.target.parentNode.classList.contains('similar__poster')) return;
-      
+      if (event.target.classList.contains('JS-click')) return;
+
       localStorage.removeItem('movieArr'); 
       renderMovies()});
 }
